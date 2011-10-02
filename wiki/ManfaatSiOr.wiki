@@ -1,4 +1,4 @@
-#labels Manfaat,advantage
+#labels Manfaat,advantage,Featured
 Dengan keberadaan dari aplikasi ini diaharapkan masyarakat Suarabaya dapat merasakan transaparansi administrasi keuangan dari pengurus RT/RW, selain itu dengan aplikasi ini masyarakat dapat lebih mengenal antar warga lainnya dengan informasi data kependudukan tersebut.
 
 Manfaat dari aplikasi ini tidak hanya dirasakan oleh masyarakat ke depannya, diharapkan dapat membantu pemerintah kota untuk lebih mudah mendapatkan informasi penduduk lingkup RT/RW, dan meningkatkan keamanan,ketertiban,dan penanggulangan kriminalitas. Dengan system kependudukan yang bagus dan data penduduk yang lengkap dapat mengurangi tingkat dan angka terorisme
