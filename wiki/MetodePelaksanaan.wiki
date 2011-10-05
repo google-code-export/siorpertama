@@ -1,15 +1,26 @@
 #labels metode
 Langkah-langkahnya menggunakan metode waterfall.
+
 Untuk sementara berikut ini adalah langkah-langkah :
 
 1. Mencari ide pembangunan aplikasi dengan melihat permasalahan di lingkungan
+
 2. Membuat proposal pembangunan aplikasi SiOR
+
 3. Mencari mitra yang mau bekerja sama menjadi sample
+
 4. Menyusun informasi dari klien tentang kebutuhan aplikasi menjadi dokumen SKPL
+
 5. Mereview kembali dokumen SKPL kepada klien, dan lakukan revisi bila diperlukan
+
 6. Membangun aplikasi dari modul ke modul berdasarkan SKPL
+
 7. Melakukan testing setiap modul selesai diselesaikan dan memperbaikinya
+
 8. Mengintegrasikan semua modul menjadi 1 aplikasi
+
 9. Melakukan testing secara keseluruhan
+
 10. Memanggil klien untuk melakukan implementasi dan evluasi terhadap aplikasi
+
 11. Aplikasi launch dan pembuatan dokumen-dokumen
