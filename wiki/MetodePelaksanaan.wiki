@@ -3,9 +3,7 @@ Metode dalam pengembangan aplikasi SiOR adalah metode pembangunan iteratif dan i
 
 Tim SiOR menggunakan metode iteratif dan inkremental dikarenakan kita berusaha mengurangi kecacatan diakhir dengan mendeteksi kecacatan kecil-kecil di depan.
 
-[URL=http://imageshack.us/photo/my-images/12/iterativedevelopmentmod.jpg/][IMG]http://img12.imageshack.us/img12/3991/iterativedevelopmentmod.th.jpg[/IMG][/URL]
-
-Uploaded with [URL=http://imageshack.us]ImageShack.us[/URL]
+http://img12.imageshack.us/img12/3991/iterativedevelopmentmod.jpg
 
 Sumber : Wikipedia
 
