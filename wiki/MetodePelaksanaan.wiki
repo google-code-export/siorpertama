@@ -1,26 +1,33 @@
 #labels metode
-Langkah-langkahnya menggunakan metode waterfall.
+Metode dalam pengembangan aplikasi SiOR adalah metode pembangunan iteratif dan inkremental. 
 
-Untuk sementara berikut ini adalah langkah-langkah :
+Tim SiOR menggunakan metode iteratif dan inkremental dikarenakan kita berusaha mengurangi kecacatan diakhir dengan mendeteksi kecacatan kecil-kecil di depan.
 
-1. Mencari ide pembangunan aplikasi dengan melihat permasalahan di lingkungan
+[URL=http://imageshack.us/photo/my-images/12/iterativedevelopmentmod.jpg/][IMG]http://img12.imageshack.us/img12/3991/iterativedevelopmentmod.th.jpg[/IMG][/URL]
 
-2. Membuat proposal pembangunan aplikasi SiOR
+Uploaded with [URL=http://imageshack.us]ImageShack.us[/URL]
 
-3. Mencari mitra yang mau bekerja sama menjadi sample
+Sumber : Wikipedia
 
-4. Menyusun informasi dari klien tentang kebutuhan aplikasi menjadi dokumen SKPL
 
-5. Mereview kembali dokumen SKPL kepada klien, dan lakukan revisi bila diperlukan
 
-6. Membangun aplikasi dari modul ke modul berdasarkan SKPL
+Tahapan-tahapan metode pengembangan yang akan dilaksanakan olek TiM SiOr antara lain :
 
-7. Melakukan testing setiap modul selesai diselesaikan dan memperbaikinya
+1. Initial planning : Pada tahap ini terdapat berbagai kegiatan dari pembentukan kelompok hingga penentuan ide aplikasi yang akan dibangun.
+  Pembentukan kelompk :  pembentukkan kelompok pada saat pertemuaan di kelas RBPL, dimana terbentuk 1 kelompok terdiri atas 4 orang
+  Diskusi problem masalah di masyarakat : memikirkan aplikasi yang akan kita buat dengan berdiskusi tentang permasalahan yang sedang terjadi di lingkungan. Setiap masing-masing indidivu menyumbangakan minimal 1 ide beserta latar belakang ide tersebut muncul.
+  Penentuan ide bersama : setelah pengumpulan seluruh ide, tim menentukkan salah satu ide yang disepakati bersama, yaitu aplikasi yang bertema tentang masyrakat. Aplikasi tersebut adalah aplikasi administrasi 
 
-8. Mengintegrasikan semua modul menjadi 1 aplikasi
+2. planning : setelah 
 
-9. Melakukan testing secara keseluruhan
+3. requierements
 
-10. Memanggil klien untuk melakukan implementasi dan evluasi terhadap aplikasi
+4. analysis & design
 
-11. Aplikasi launch dan pembuatan dokumen-dokumen
+5. impelementation
+
+6. testing
+
+7. evaluation 
+
+8. deployment
