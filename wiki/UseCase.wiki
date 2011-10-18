@@ -9,14 +9,4 @@ Pelaku:
 Administrator sebagai fungsionalitas Administrator
 Operator      sebagai fungsionalitas operator
 
-Pada diagram use case di atas, berisi fungsionalitas-fungsionalitas yang dilakukan setiap aktor yang terlibat dalam sistem. Pada use case tersebut terlihat bahawa aplikasi SiOR mempunyai dua aktor utama yaitu Administrator dan Pengguna yang menjadi satu kesatuan pada aktor pengguna aplikasi SiOR berikut turunannya.
-
-primary usecase
-http://img705.imageshack.us/img705/7/uc1.png
-
-sequence diagram login/logoff
-http://img689.imageshack.us/img689/2217/uc2.png
-
-sequence diagram menu
-
-http://img828.imageshack.us/img828/6162/uc3.png
+Pada diagram use case di atas, berisi fungsionalitas-fungsionalitas yang dilakukan setiap aktor yang terlibat dalam sistem. Pada use case tersebut terlihat bahawa aplikasi SiOR mempunyai dua aktor utama yaitu Administrator dan Pengguna yang menjadi satu kesatuan pada aktor pengguna aplikasi SiOR berikut turunannya
