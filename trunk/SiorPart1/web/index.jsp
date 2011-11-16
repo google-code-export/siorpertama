@@ -13,5 +13,18 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        
+         <table>
+            <tr> 
+                <td>Kode Keluarga</td>
+                <td>Anggota Keluarga</td>
+                <td>Kepala Keluarga</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
     </body>
 </html>
