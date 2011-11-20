@@ -16,27 +16,28 @@ public class demokeluarga {
     
     public static void main(String args[]){
 	Keluarga k = new Keluarga();  //nama entitas
-	k.setKodeKeluarga("wm101");
-	k.setAnggotaKeluarga(4);
-	k.setKepalaKeluarga("Budi Rahmawan");
-    }
-	/*
+	k.setKodekeluarga("wm101");
+	k.setAnggotakeluarga(4);
+	k.setKepalakeluarga("Budi Rahmawan");
+    
+	
         demokeluarga demo = new demokeluarga(); //nama class
 	demo.persist(k);
     }
+
         
-    public void persist(Object object) {
+    public void persist(Keluarga k) {
 	EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("simple-jpaPU");
 	EntityManager em = emf.createEntityManager();
 	em.getTransaction().begin();
 	try {
-            em.persist(object);
+            em.persist(k);
             em.getTransaction().commit();
 	} catch (Exception e) {
             em.getTransaction().rollback();
 	} finally {
             em.close();
         }
-    } */
+    }
 
    }

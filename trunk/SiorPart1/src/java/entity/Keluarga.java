@@ -12,74 +12,82 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lia
+ * @author TYA
  */
 @Entity
-@Table(name = "keluarga", catalog = "gunasior", schema = "")
+@Table(name = "keluarga")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Keluarga.findAll", query = "SELECT k FROM Keluarga k"),
-    @NamedQuery(name = "Keluarga.findByKodeKeluarga", query = "SELECT k FROM Keluarga k WHERE k.kodeKeluarga = :kodeKeluarga"),
-    @NamedQuery(name = "Keluarga.findByAnggotaKeluarga", query = "SELECT k FROM Keluarga k WHERE k.anggotaKeluarga = :anggotaKeluarga"),
-    @NamedQuery(name = "Keluarga.findByKepalaKeluarga", query = "SELECT k FROM Keluarga k WHERE k.kepalaKeluarga = :kepalaKeluarga")})
+    @NamedQuery(name = "Keluarga.findByKodekeluarga", query = "SELECT k FROM Keluarga k WHERE k.kodekeluarga = :kodekeluarga"),
+    @NamedQuery(name = "Keluarga.findByAnggotakeluarga", query = "SELECT k FROM Keluarga k WHERE k.anggotakeluarga = :anggotakeluarga"),
+    @NamedQuery(name = "Keluarga.findByKepalakeluarga", query = "SELECT k FROM Keluarga k WHERE k.kepalakeluarga = :kepalakeluarga")})
 
 public class Keluarga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "KodeKeluarga", nullable = false, length = 10)
-    private String kodeKeluarga;
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "kodekeluarga")
+    private String kodekeluarga;
     @Basic(optional = false)
-    @Column(name = "AnggotaKeluarga", nullable = false)
-    private int anggotaKeluarga;
+    @NotNull
+    @Column(name = "anggotakeluarga")
+    private int anggotakeluarga;
     @Basic(optional = false)
-    @Column(name = "KepalaKeluarga", nullable = false, length = 30)
-    private String kepalaKeluarga;
+    @NotNull
+    @Size(min = 1, max = 25)
+    @Column(name = "kepalakeluarga")
+    private String kepalakeluarga;
 
     public Keluarga() {
     }
-        public Keluarga(String kodeKeluarga) {
-        this.kodeKeluarga = kodeKeluarga;
+
+    public Keluarga(String kodekeluarga) {
+        this.kodekeluarga = kodekeluarga;
     }
 
-    public Keluarga(String kodeKeluarga, int anggotaKeluarga, String kepalaKeluarga) {
-        this.kodeKeluarga = kodeKeluarga;
-        this.anggotaKeluarga = anggotaKeluarga;
-        this.kepalaKeluarga = kepalaKeluarga;
+    public Keluarga(String kodekeluarga, int anggotakeluarga, String kepalakeluarga) {
+        this.kodekeluarga = kodekeluarga;
+        this.anggotakeluarga = anggotakeluarga;
+        this.kepalakeluarga = kepalakeluarga;
     }
 
-    public String getKodeKeluarga() {
-        return kodeKeluarga;
+    public String getKodekeluarga() {
+        return kodekeluarga;
     }
 
-    public void setKodeKeluarga(String kodeKeluarga) {
-        this.kodeKeluarga = kodeKeluarga;
+    public void setKodekeluarga(String kodekeluarga) {
+        this.kodekeluarga = kodekeluarga;
     }
 
-    public int getAnggotaKeluarga() {
-        return anggotaKeluarga;
+    public int getAnggotakeluarga() {
+        return anggotakeluarga;
     }
 
-    public void setAnggotaKeluarga(int anggotaKeluarga) {
-        this.anggotaKeluarga = anggotaKeluarga;
+    public void setAnggotakeluarga(int anggotakeluarga) {
+        this.anggotakeluarga = anggotakeluarga;
     }
 
-    public String getKepalaKeluarga() {
-        return kepalaKeluarga;
+    public String getKepalakeluarga() {
+        return kepalakeluarga;
     }
 
-    public void setKepalaKeluarga(String kepalaKeluarga) {
-        this.kepalaKeluarga = kepalaKeluarga;
+    public void setKepalakeluarga(String kepalakeluarga) {
+        this.kepalakeluarga = kepalakeluarga;
     }
-
+/*
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (kodeKeluarga != null ? kodeKeluarga.hashCode() : 0);
+        hash += (kodekeluarga != null ? kodekeluarga.hashCode() : 0);
         return hash;
     }
 
@@ -90,7 +98,7 @@ public class Keluarga implements Serializable {
             return false;
         }
         Keluarga other = (Keluarga) object;
-        if ((this.kodeKeluarga == null && other.kodeKeluarga != null) || (this.kodeKeluarga != null && !this.kodeKeluarga.equals(other.kodeKeluarga))) {
+        if ((this.kodekeluarga == null && other.kodekeluarga != null) || (this.kodekeluarga != null && !this.kodekeluarga.equals(other.kodekeluarga))) {
             return false;
         }
         return true;
@@ -98,7 +106,7 @@ public class Keluarga implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Keluarga[ kodeKeluarga=" + kodeKeluarga + " ]";
-    }
+        return "entity.Keluarga[ kodekeluarga=" + kodekeluarga + " ]";
+    } */
     
 }

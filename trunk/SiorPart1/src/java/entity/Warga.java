@@ -12,100 +12,110 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author Lia
+ * @author TYA
  */
 @Entity
-@Table(name = "warga")
-@XmlRootElement
+@Table(name = "warga", catalog = "siorsekali", schema = "", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"namalengkap"}),
+    @UniqueConstraint(columnNames = {"kotaktp"}),
+    @UniqueConstraint(columnNames = {"alamatktp"}),
+    @UniqueConstraint(columnNames = {"tempatlahir"})})
 @NamedQueries({
-    @NamedQuery(name = "Warga.findAll", query = "SELECT w FROM Warga w"),
-    @NamedQuery(name = "Warga.findByIdKTP", query = "SELECT w FROM Warga w WHERE w.idKTP = :idKTP"),
-    @NamedQuery(name = "Warga.findByNamaLengkap", query = "SELECT w FROM Warga w WHERE w.namaLengkap = :namaLengkap"),
-    @NamedQuery(name = "Warga.findByTempatLahir", query = "SELECT w FROM Warga w WHERE w.tempatLahir = :tempatLahir"),
-    @NamedQuery(name = "Warga.findByTanggalLahir", query = "SELECT w FROM Warga w WHERE w.tanggalLahir = :tanggalLahir"),
-    @NamedQuery(name = "Warga.findByAlamatKTP", query = "SELECT w FROM Warga w WHERE w.alamatKTP = :alamatKTP")})
+    @NamedQuery(name = "Warga.findAll", query = "SELECT w FROM Warga w")})
 public class Warga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "IdKTP")
-    private Integer idKTP;
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "noktp", nullable = false, length = 30)
+    private String noktp;
     @Basic(optional = false)
-    @Column(name = "NamaLengkap")
-    private String namaLengkap;
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "namalengkap", nullable = false, length = 30)
+    private String namalengkap;
     @Basic(optional = false)
-    @Column(name = "TempatLahir")
-    private String tempatLahir;
+    @NotNull
+    @Size(min = 1, max = 25)
+    @Column(name = "tempatlahir", nullable = false, length = 25)
+    private String tempatlahir;
     @Basic(optional = false)
-    @Column(name = "TanggalLahir")
-    private String tanggalLahir;
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "alamatktp", nullable = false, length = 50)
+    private String alamatktp;
     @Basic(optional = false)
-    @Column(name = "AlamatKTP")
-    private String alamatKTP;
+    @NotNull
+    @Size(min = 1, max = 25)
+    @Column(name = "kotaktp", nullable = false, length = 25)
+    private String kotaktp;
 
     public Warga() {
     }
 
-    public Warga(Integer idKTP) {
-        this.idKTP = idKTP;
+    public Warga(String noktp) {
+        this.noktp = noktp;
     }
 
-    public Warga(Integer idKTP, String namaLengkap, String tempatLahir, String tanggalLahir, String alamatKTP) {
-        this.idKTP = idKTP;
-        this.namaLengkap = namaLengkap;
-        this.tempatLahir = tempatLahir;
-        this.tanggalLahir = tanggalLahir;
-        this.alamatKTP = alamatKTP;
+    public Warga(String noktp, String namalengkap, String tempatlahir, String alamatktp, String kotaktp) {
+        this.noktp = noktp;
+        this.namalengkap = namalengkap;
+        this.tempatlahir = tempatlahir;
+        this.alamatktp = alamatktp;
+        this.kotaktp = kotaktp;
     }
 
-    public Integer getIdKTP() {
-        return idKTP;
+    public String getNoktp() {
+        return noktp;
     }
 
-    public void setIdKTP(Integer idKTP) {
-        this.idKTP = idKTP;
+    public void setNoktp(String noktp) {
+        this.noktp = noktp;
     }
 
-    public String getNamaLengkap() {
-        return namaLengkap;
+    public String getNamalengkap() {
+        return namalengkap;
     }
 
-    public void setNamaLengkap(String namaLengkap) {
-        this.namaLengkap = namaLengkap;
+    public void setNamalengkap(String namalengkap) {
+        this.namalengkap = namalengkap;
     }
 
-    public String getTempatLahir() {
-        return tempatLahir;
+    public String getTempatlahir() {
+        return tempatlahir;
     }
 
-    public void setTempatLahir(String tempatLahir) {
-        this.tempatLahir = tempatLahir;
+    public void setTempatlahir(String tempatlahir) {
+        this.tempatlahir = tempatlahir;
     }
 
-    public String getTanggalLahir() {
-        return tanggalLahir;
+    public String getAlamatktp() {
+        return alamatktp;
     }
 
-    public void setTanggalLahir(String tanggalLahir) {
-        this.tanggalLahir = tanggalLahir;
+    public void setAlamatktp(String alamatktp) {
+        this.alamatktp = alamatktp;
     }
 
-    public String getAlamatKTP() {
-        return alamatKTP;
+    public String getKotaktp() {
+        return kotaktp;
     }
 
-    public void setAlamatKTP(String alamatKTP) {
-        this.alamatKTP = alamatKTP;
+    public void setKotaktp(String kotaktp) {
+        this.kotaktp = kotaktp;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idKTP != null ? idKTP.hashCode() : 0);
+        hash += (noktp != null ? noktp.hashCode() : 0);
         return hash;
     }
 
@@ -116,7 +126,7 @@ public class Warga implements Serializable {
             return false;
         }
         Warga other = (Warga) object;
-        if ((this.idKTP == null && other.idKTP != null) || (this.idKTP != null && !this.idKTP.equals(other.idKTP))) {
+        if ((this.noktp == null && other.noktp != null) || (this.noktp != null && !this.noktp.equals(other.noktp))) {
             return false;
         }
         return true;
@@ -124,7 +134,7 @@ public class Warga implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Warga[ idKTP=" + idKTP + " ]";
+        return "entity.Warga[ noktp=" + noktp + " ]";
     }
     
 }

@@ -34,9 +34,9 @@ public class CobaServlet2 extends HttpServlet {
         
         Keluarga kel = new Keluarga();
         
-        kel.setKodeKeluarga("Kel003");
-        kel.setKepalaKeluarga("Budiono");
-        kel.setAnggotaKeluarga(5);
+        kel.setKodekeluarga("Kel003");
+        kel.setKepalakeluarga("Budiono");
+        kel.setAnggotakeluarga(5);
         
         try {
             //TODO output your page here
@@ -46,8 +46,8 @@ public class CobaServlet2 extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewServlet1 at " + request.getContextPath () + "</h1>");
-            out.println("<br> Kode Keluarga " + kel.getKodeKeluarga() + " adalah keluarga dari Bapak " + kel.getKepalaKeluarga() + "</br>" );
-            out.println("<br> Keluarga ini beranggotakan sebanyak " + kel.getAnggotaKeluarga() + " orang." + "</br>" );
+            out.println("<br> Kode Keluarga " + kel.getKodekeluarga() + " adalah keluarga dari Bapak " + kel.getKepalakeluarga() + "</br>" );
+            out.println("<br> Keluarga ini beranggotakan sebanyak " + kel.getAnggotakeluarga() + " orang." + "</br>" );
             out.println("</body>");
             out.println("</html>");
             
