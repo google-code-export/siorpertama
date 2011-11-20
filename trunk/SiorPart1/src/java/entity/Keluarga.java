@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Keluarga.findByKodeKeluarga", query = "SELECT k FROM Keluarga k WHERE k.kodeKeluarga = :kodeKeluarga"),
     @NamedQuery(name = "Keluarga.findByAnggotaKeluarga", query = "SELECT k FROM Keluarga k WHERE k.anggotaKeluarga = :anggotaKeluarga"),
     @NamedQuery(name = "Keluarga.findByKepalaKeluarga", query = "SELECT k FROM Keluarga k WHERE k.kepalaKeluarga = :kepalaKeluarga")})
+
 public class Keluarga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,7 +42,6 @@ public class Keluarga implements Serializable {
 
     public Keluarga() {
     }
-
         public Keluarga(String kodeKeluarga) {
         this.kodeKeluarga = kodeKeluarga;
     }
