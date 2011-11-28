@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Keluarga.findByKodekeluarga", query = "SELECT k FROM Keluarga k WHERE k.kodekeluarga = :kodekeluarga"),
     @NamedQuery(name = "Keluarga.findByAnggotakeluarga", query = "SELECT k FROM Keluarga k WHERE k.anggotakeluarga = :anggotakeluarga"),
     @NamedQuery(name = "Keluarga.findByKepalakeluarga", query = "SELECT k FROM Keluarga k WHERE k.kepalakeluarga = :kepalakeluarga")})
-
 public class Keluarga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -83,7 +82,7 @@ public class Keluarga implements Serializable {
     public void setKepalakeluarga(String kepalakeluarga) {
         this.kepalakeluarga = kepalakeluarga;
     }
-/*
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -107,6 +106,6 @@ public class Keluarga implements Serializable {
     @Override
     public String toString() {
         return "entity.Keluarga[ kodekeluarga=" + kodekeluarga + " ]";
-    } */
+    }
     
 }

@@ -12,49 +12,51 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author TYA
  */
 @Entity
-@Table(name = "rumah", catalog = "siorsekali", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"alamatrumah"}),
-    @UniqueConstraint(columnNames = {"kotarumah"}),
-    @UniqueConstraint(columnNames = {"kecamatanrumah"}),
-    @UniqueConstraint(columnNames = {"kelurahanrumah"})})
+@Table(name = "rumah")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rumah.findAll", query = "SELECT r FROM Rumah r")})
+    @NamedQuery(name = "Rumah.findAll", query = "SELECT r FROM Rumah r"),
+    @NamedQuery(name = "Rumah.findByKoderumah", query = "SELECT r FROM Rumah r WHERE r.koderumah = :koderumah"),
+    @NamedQuery(name = "Rumah.findByAlamatrumah", query = "SELECT r FROM Rumah r WHERE r.alamatrumah = :alamatrumah"),
+    @NamedQuery(name = "Rumah.findByKelurahanrumah", query = "SELECT r FROM Rumah r WHERE r.kelurahanrumah = :kelurahanrumah"),
+    @NamedQuery(name = "Rumah.findByKecamatanrumah", query = "SELECT r FROM Rumah r WHERE r.kecamatanrumah = :kecamatanrumah"),
+    @NamedQuery(name = "Rumah.findByKotarumah", query = "SELECT r FROM Rumah r WHERE r.kotarumah = :kotarumah")})
 public class Rumah implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "koderumah", nullable = false, length = 10)
+    @Column(name = "koderumah")
     private String koderumah;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "alamatrumah", nullable = false, length = 50)
+    @Column(name = "alamatrumah")
     private String alamatrumah;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "kelurahanrumah", nullable = false, length = 30)
+    @Column(name = "kelurahanrumah")
     private String kelurahanrumah;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "kecamatanrumah", nullable = false, length = 20)
+    @Column(name = "kecamatanrumah")
     private String kecamatanrumah;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
-    @Column(name = "kotarumah", nullable = false, length = 25)
+    @Column(name = "kotarumah")
     private String kotarumah;
 
     public Rumah() {
