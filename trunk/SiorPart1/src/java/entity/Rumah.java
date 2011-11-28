@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rumah.findByKelurahanrumah", query = "SELECT r FROM Rumah r WHERE r.kelurahanrumah = :kelurahanrumah"),
     @NamedQuery(name = "Rumah.findByKecamatanrumah", query = "SELECT r FROM Rumah r WHERE r.kecamatanrumah = :kecamatanrumah"),
     @NamedQuery(name = "Rumah.findByKotarumah", query = "SELECT r FROM Rumah r WHERE r.kotarumah = :kotarumah")})
+
 public class Rumah implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
