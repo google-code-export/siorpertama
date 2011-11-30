@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Untitled Document</title>
+<title>Menambah Informasi Rumah</title>
 </head>
 
 <body>
@@ -11,9 +11,9 @@
   <p>SiOR</p>
   <table width="401" border="0">
     <tr>
-      <td width="123">ID KK </td>
+      <td width="123">Kode Rumah </td>
       <td width="10">:</td>
-      <td width="711"><input name="textfield" type="text" size="30" /></td>
+      <td width="711"><input name="txt_koderumah" type="text" size="30" /></td>
     </tr>
   </table>
   <p>Lengkapi data berikut : </p>
@@ -21,22 +21,22 @@
     <tr>
       <td width="120">Alamat rumah </td>
       <td width="7">:</td>
-      <td width="358"><textarea name="textfield2" cols="50" rows="4"></textarea></td>
+      <td width="358"><textarea name="txt_alamatrumah" cols="50" rows="4"></textarea></td>
     </tr>
     <tr>
-      <td>RT</td>
+      <td>Kelurahan Rumah</td>
       <td>:</td>
-      <td><input name="textfield3" type="text" size="8" /></td>
+      <td><input name="txt_kelurahanrumah" type="text" size="8" /></td>
     </tr>
     <tr>
-      <td>RW</td>
+      <td>Kecamatan Rumah</td>
       <td>:</td>
-      <td><input name="textfield32" type="text" size="8" /></td>
+      <td><input name="txt_kecamatanrumah" type="text" size="8" /></td>
     </tr>
     <tr>
-      <td>Nomor telepon </td>
+      <td>Kota Rumah </td>
       <td>:</td>
-      <td><input name="textfield33" type="text" size="30" /></td>
+      <td><input name="txt_kotarumah" type="text" size="30" /></td>
     </tr>
   </table>
   <p>&nbsp;</p>

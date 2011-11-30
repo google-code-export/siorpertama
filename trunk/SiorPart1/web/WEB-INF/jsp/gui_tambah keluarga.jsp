@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Untitled Document</title>
+<title>Menambah Informasi Keluarga</title>
 </head>
 
 <body>
@@ -13,12 +13,12 @@
   <p>Isilah form di bawah ini :</p>
   <table width="693" border="0">
     <tr>
-      <td width="172">ID KK </td>
+      <td width="172">Kode Keluarga </td>
       <td width="7">:</td>
-      <td width="144"><input type="text" name="textfield" /></td>
-      <td width="98">File KK </td>
+      <td width="144"><input type="text" name="txt_kodekeluarga" /></td>
+      <td width="98">Anggota Keluarga </td>
       <td width="6">:</td>
-      <td width="226"><input type="file" name="file" /></td>
+      <td width="226"><input type="file" name="txt_anggotakeluarga" /></td>
     </tr>
   </table>
   <table width="344" border="0">
