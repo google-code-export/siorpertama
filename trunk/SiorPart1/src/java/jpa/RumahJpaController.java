@@ -88,15 +88,15 @@ public class RumahJpaController {
         }
     }
 
-    public List<Rumah> findPesanEntities() {
-        return findPesanEntities(true, -1, -1);
+    public List<Rumah> findRumahEntities() {
+        return findRumahEntities(true, -1, -1);
     }
 
-    public List<Rumah> findPesanEntities(int maxResults, int firstResult) {
-        return findPesanEntities(false, maxResults, firstResult);
+    public List<Rumah> findRumahEntities(int maxResults, int firstResult) {
+        return findRumahEntities(false, maxResults, firstResult);
     }
 
-    private List<Rumah> findPesanEntities(boolean all, int maxResults, int firstResult) {
+    private List<Rumah> findRumahEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
