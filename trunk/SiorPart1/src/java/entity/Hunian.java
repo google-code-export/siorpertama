@@ -65,7 +65,22 @@ public class Hunian implements Serializable {
     @Column(name = "tanggalkeluar")
     @Temporal(TemporalType.DATE)
     private Date tanggalkeluar;
-
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2)
+    @Column(name = "tanggalmasuk_hari")
+    private int tanggalmasuk_hari;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 25)
+    @Column(name = "tanggalmasuk_bulan")
+    private String tanggalmasuk_bulan;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 4)
+    @Column(name = "tanggalmasuk_tahun")
+    private int tanggalmasuk_tahun;
+    
     public Hunian() {
     }
 
@@ -121,6 +136,30 @@ public class Hunian implements Serializable {
         this.tanggalmasuk = tanggalmasuk;
     }
 
+    public int getTanggalmasukhari() {
+        return tanggalmasuk_hari;
+    }
+
+    public void setTanggalmasukhari(int tanggalmasuk_hari) {
+        this.tanggalmasuk_hari = tanggalmasuk_hari;
+    }
+    
+    public String getTanggalmasukbulan() {
+        return tanggalmasuk_bulan;
+    }
+
+    public void setTanggalmasukbulan(String tanggalmasuk_bulan) {
+        this.tanggalmasuk_bulan = tanggalmasuk_bulan;
+    }
+    
+    public int getTanggalmasuktahun() {
+        return tanggalmasuk_tahun;
+    }
+
+    public void setTanggalmasuktahun(int tanggalmasuk_tahun) {
+        this.tanggalmasuk_tahun = tanggalmasuk_tahun;
+    }
+    
     public Date getTanggalkeluar() {
         return tanggalkeluar;
     }
