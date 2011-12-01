@@ -4,9 +4,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
+<style type="text/css">
+#apDiv1 {	position:absolute;
+	left:714px;
+	top:74px;
+	width:237px;
+	height:182px;
+	z-index:1;
+}
+#apDiv2 {
+	position:absolute;
+	left:908px;
+	top:72px;
+	width:237px;
+	height:182px;
+	z-index:1;
+}
+</style>
 </head>
 
 <body>
+<p></p>
+<img src="file:///C|/Users/ntonk/Documents/Unnamed Site 2/Untitled-1.png" width="873" height="214" />
+<div id="apDiv2">
+  <table width="236" height="184" border="1">
+    <tr>
+      <td width="114" height="56">01-Dec-2011 5:02 PM</td>
+      <td width="106" rowspan="3"> Foto User </td>
+    </tr>
+    <tr>
+      <td height="68"><p>Selamat Datang <a href="#">User</a> !</p></td>
+    </tr>
+    <tr>
+      <td height="50"><input type="submit" name="So2" id="So2" value="Keluar" /></td>
+    </tr>
+  </table>
+</div>
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <p>SiOR</p>
   <table width="488" border="0">
