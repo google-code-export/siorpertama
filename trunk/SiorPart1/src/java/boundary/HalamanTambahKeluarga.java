@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 
 public class HalamanTambahKeluarga extends Boundary {
+    @Override
 protected void process() {
         
         setMessage("");
