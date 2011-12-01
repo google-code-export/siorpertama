@@ -71,15 +71,15 @@ public class Warga implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
-    @Column(name = "kelurahanKTP")
-    private String kelurahanKTP;
+    @Column(name = "kelurahanktp")
+    private String kelurahanktp;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 25)
-    @Column(name = "kecamatanKTP")
-    private String kecamatanKTP;
+    @Column(name = "kecamatanktp")
+    private String kecamatanktp;
     @Column(name = "RTKTP")
-    private Integer rtktp;
+    private int rtktp;
     @Basic(optional = false)
     @NotNull
     @Column(name = "RWKTP")
@@ -107,14 +107,15 @@ public class Warga implements Serializable {
         this.noktp = noktp;
     }
 
-    public Warga(String noktp, String namalengkap, String tempatlahir, String alamatktp, String kotaktp, String kelurahanKTP, String kecamatanKTP, int rwktp, String kewarganegaraan, String kodekeluarga, Date tanggallahir) {
+    public Warga(String noktp, String namalengkap, String tempatlahir, String alamatktp, String kotaktp, String kelurahanktp, String kecamatanktp, int rtktp, int rwktp, String kewarganegaraan, String kodekeluarga, Date tanggallahir) {
         this.noktp = noktp;
         this.namalengkap = namalengkap;
         this.tempatlahir = tempatlahir;
         this.alamatktp = alamatktp;
         this.kotaktp = kotaktp;
-        this.kelurahanKTP = kelurahanKTP;
-        this.kecamatanKTP = kecamatanKTP;
+        this.kelurahanktp = kelurahanktp;
+        this.kecamatanktp = kecamatanktp;
+        this.rtktp = rtktp;
         this.rwktp = rwktp;
         this.kewarganegaraan = kewarganegaraan;
         this.kodekeluarga = kodekeluarga;
@@ -161,27 +162,27 @@ public class Warga implements Serializable {
         this.kotaktp = kotaktp;
     }
 
-    public String getKelurahanKTP() {
-        return kelurahanKTP;
+    public String getKelurahanktp() {
+        return kelurahanktp;
     }
 
-    public void setKelurahanKTP(String kelurahanKTP) {
-        this.kelurahanKTP = kelurahanKTP;
+    public void setKelurahanktp(String kelurahanktp) {
+        this.kelurahanktp = kelurahanktp;
     }
 
-    public String getKecamatanKTP() {
-        return kecamatanKTP;
+    public String getKecamatanktp() {
+        return kecamatanktp;
     }
 
-    public void setKecamatanKTP(String kecamatanKTP) {
-        this.kecamatanKTP = kecamatanKTP;
+    public void setKecamatanktp(String kecamatanktp) {
+        this.kecamatanktp = kecamatanktp;
     }
 
-    public Integer getRtktp() {
+    public int getRtktp() {
         return rtktp;
     }
 
-    public void setRtktp(Integer rtktp) {
+    public void setRtktp(int rtktp) {
         this.rtktp = rtktp;
     }
 
@@ -241,5 +242,6 @@ public class Warga implements Serializable {
     public String toString() {
         return "entity.Warga[ noktp=" + noktp + " ]";
     }
-    
+
+        
 }

@@ -54,7 +54,7 @@ public class HalamanTambahRumah extends Boundary {
         }
     }
 
-    boolean validate_koderumah() {
+    public boolean validate_koderumah() {
         
         String koderumah = getRequest().getParameter("koderumah");
         if(koderumah == null){

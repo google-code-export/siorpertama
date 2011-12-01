@@ -1,5 +1,4 @@
 /*
- * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -10,15 +9,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+
 /**
  *
- * @author TYA
+ * @author Lia
  */
-public class DaftarRumah {
+public class DaftarWarga {
+
+    private int jumlahwarga = -1;
     
-    private int jumlahrumah = -1;
-    
-    public DaftarRumah() {
+    public DaftarWarga() {
         emf = Persistence.createEntityManagerFactory("SiorPart1PU");
     }
     private EntityManagerFactory emf = null;
@@ -30,15 +31,15 @@ public class DaftarRumah {
     /**
      * @return the jumlahPesan
      */
-    public int getJumlahRumah() {
+    public int getJumlahWarga() {
 
-        if (jumlahrumah == -1) {
+        if (jumlahwarga == -1) {
             EntityManager em = null;
             try {
                 em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) FROM rumah as o");
+                Query q = em.createQuery("SELECT count(o) FROM warga as o");
                 Number jumlah = (Number) q.getSingleResult();
-                jumlahrumah = jumlah.intValue();
+                jumlahwarga = jumlah.intValue();
 
             } catch (javax.persistence.EntityNotFoundException e) {
             } finally {
@@ -48,17 +49,17 @@ public class DaftarRumah {
             }
         }
 
-        return jumlahrumah;
+        return jumlahwarga;
     }
 
-    public List<Rumah> seluruhDaftarRumah () {
-        List<Rumah> rumah = null;
+    public List<Warga> seluruhDaftarWarga () {
+        List<Warga> warga = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
             Query q = em.createQuery("SELECT object(o) FROM rumah as o ORDER BY o.id DESC");
             q.setMaxResults(10);
-            rumah = q.getResultList();
+            warga = q.getResultList();
 
         } catch (javax.persistence.EntityNotFoundException e) {
         } finally {
@@ -66,21 +67,28 @@ public class DaftarRumah {
                 em.close();
             }
         }
-        return rumah;
+        return warga;
     }
     
-     public void tambahRumH(Rumah rumah) {
+     public void tambahWarga(Warga warga) {
 
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            rumah.setKoderumah(null);
-            rumah.setAlamatrumah(null);
-            rumah.setKelurahanrumah(null);
-            rumah.setKecamatanrumah(null);
-            rumah.setKotarumah(null);
-            em.persist(rumah);
+            warga.setNoktp(null);
+            warga.setKodekeluarga(null);
+            warga.setNamalengkap(null);
+            warga.setTempatlahir(null);
+            warga.setTanggallahir(null);
+            warga.setKewarganegaraan(null);
+            warga.setAlamatktp(null);
+            warga.setRtktp(0);
+            warga.setRwktp(0);
+            warga.setKelurahanktp(null);
+            warga.setKecamatanktp(null);
+            warga.setKotaktp(null);
+            em.persist(warga);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,5 +97,5 @@ public class DaftarRumah {
         }
 
     }
-   
+    
 }
