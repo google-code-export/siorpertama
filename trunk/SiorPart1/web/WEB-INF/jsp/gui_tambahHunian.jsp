@@ -4,9 +4,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
+<style type="text/css">
+#apDiv1 {
+	position:absolute;
+	left:714px;
+	top:40px;
+	width:237px;
+	height:182px;
+	z-index:1;
+}
+</style>
 </head>
 
 <body>
+<img src="file:///C|/Users/ntonk/Documents/Unnamed Site 2/Untitled-1.png" width="691" height="220" />
 <form id="form1" name="form1" method="post" action="">
   <p>SiOR</p>
   <p>Isilah form berikut ini dengan lengkap :</p>
@@ -22,6 +33,20 @@
       <td><input type="text" name="textfield2" /></td>
     </tr>
   </table>
+  <div id="apDiv1">
+    <table width="236" height="184" border="1">
+      <tr>
+        <td width="114" height="56">01-Dec-2011 5:02 PM</td>
+        <td width="106" rowspan="3"> Foto User </td>
+      </tr>
+      <tr>
+        <td height="68"><p>Selamat Datang <a href="#">User</a> !</p></td>
+      </tr>
+      <tr>
+        <td height="50"><input type="submit" name="So" id="So" value="Keluar" /></td>
+      </tr>
+    </table>
+  </div>
   <table width="572" border="0">
     <tr>
       <td width="108">Tanggal Masuk </td>
@@ -111,7 +136,6 @@
       </div></td>
     </tr>
   </table>
-  <p>&nbsp;   </p>
 </form>
 </body>
 </html>
