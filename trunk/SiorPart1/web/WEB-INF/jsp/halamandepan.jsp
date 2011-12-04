@@ -67,9 +67,20 @@
     <li class="TabbedPanelsTab" tabindex="0">Persyaratan Anggota RT /RW</li>
 </ul>
   <div class="TabbedPanelsContentGroup">
-    <div class="TabbedPanelsContent">Content 1</div>
-    <div class="TabbedPanelsContent">Content 2</div>
-    <div class="TabbedPanelsContent">Content 3</div>
+    <div class="TabbedPanelsContent">
+      <form id="form2" name="form2" method="post" action="">
+        <label for="text1"></label>
+        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
+      </form>
+    </div>
+    <div class="TabbedPanelsContent"><form id="form2" name="form2" method="post" action="">
+        <label for="text1"></label>
+        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
+    </form></div>
+    <div class="TabbedPanelsContent"><form id="form2" name="form2" method="post" action="">
+        <label for="text1"></label>
+        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
+      </form></div>
 </div>
 </div>
 <script type="text/javascript">
