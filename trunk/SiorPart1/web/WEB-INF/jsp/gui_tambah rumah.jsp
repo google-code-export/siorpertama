@@ -18,7 +18,7 @@
 
 <body>
 <p></p>
-<img src="file:///C|/Users/ntonk/Documents/Unnamed Site 2/Untitled-1.png" width="693" height="212" />
+<img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="693" height="212" />
 <div id="apDiv1">
   <table width="236" height="184" border="1">
     <tr>
