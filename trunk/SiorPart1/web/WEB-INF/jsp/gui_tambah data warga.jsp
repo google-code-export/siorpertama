@@ -38,7 +38,7 @@
     </tr>
   </table>
 </div>
-<p><img src="file:///C|/Users/ntonk/Documents/Unnamed Site 2/Untitled-1.png" width="515" height="210" />O</p>
+<p><img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="515" height="210" />O</p>
 <form enctype="multipart/form-data">
   <p>SIOR</p>
    <p>Isilah form tambah warga dibawah ini: </p>
