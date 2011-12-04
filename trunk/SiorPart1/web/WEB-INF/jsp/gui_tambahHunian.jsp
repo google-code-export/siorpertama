@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<img src="file:///C|/Users/ntonk/Documents/Unnamed Site 2/Untitled-1.png" width="691" height="220" />
+<img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="691" height="220" />
 <form id="form1" name="form1" method="post" action="">
   <p>SiOR</p>
   <p>Isilah form berikut ini dengan lengkap :</p>
