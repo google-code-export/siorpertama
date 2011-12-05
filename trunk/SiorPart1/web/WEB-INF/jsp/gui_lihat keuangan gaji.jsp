@@ -22,27 +22,23 @@
 }
 #apDiv2 {
 	position:absolute;
-	left:720px;
-	top:279px;
-	width:241px;
-	height:129px;
+	left:716px;
+	top:286px;
+	width:238px;
+	height:26px;
 	z-index:2;
 }
 </style>
-<script src="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryMenuBar.js" type="text/javascript"></script>
-<script src="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryCollapsiblePanel.js" type="text/javascript"></script>
-<link href="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #apDiv3 {
 	position:absolute;
-	left:721px;
-	top:441px;
+	left:714px;
+	top:330px;
 	width:241px;
 	height:216px;
 	z-index:3;
 }
 </style>
-<link href="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #apDiv4 {
 	position:absolute;
@@ -68,21 +64,54 @@ p {
 	z-index:5;
 }
 </style>
+<script type="text/javascript">
+function MM_jumpMenuGo(objId,targ,restore){ //v9.0
+  var selObj = null;  with (document) { 
+  if (getElementById) selObj = getElementById(objId);
+  if (selObj) eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0; }
+}
+</script>
 </head>
 
 <body>
 <div id="apDiv2">
-  <ul id="MenuBar1" class="MenuBarVertical">
-    <li><a href="#">Menu Utama</a></li>
-    <li><a href="#"> Keuangan</a></li>
-    <li><a href="#"> Hunian</a></li>
-  </ul>
+  <form id="form5" name="form5" method="post" action="">
+    <select name="jumpMenu" id="jumpMenu">
+      <option>Menu Utama</option>
+      <option>Menu Keuangan</option>
+      <option>Menu Hunian</option>
+    </select>
+    <input type="button" name="go_button" id= "go_button" value="Go" onclick="MM_jumpMenuGo('jumpMenu','parent',0)" />
+  </form>
 </div>
 <div id="apDiv3">
-  <div id="CollapsiblePanel1" class="CollapsiblePanel">
-    <div class="CollapsiblePanelTab" tabindex="0">Notiifikasi Pengguna</div>
-    <div class="CollapsiblePanelContent">....</div>
-  </div>
+  <form id="form4" name="form4" method="post" action="">
+    <p>Notifikasi Pengguna
+
+      <label for="list"></label>
+    </p>
+    <table width="244" height="140" border="1">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <p>
+      <label for="text"></label>
+    </p>
+  </form>
 </div>
 <div id="apDiv4">
   <form id="form2" name="form2" method="post" action="">
@@ -226,9 +255,5 @@ p {
       </tr>
     </table>
 </div>
-<script type="text/javascript">
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
-</script>
 </body>
 </html>
