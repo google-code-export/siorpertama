@@ -10,15 +10,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+
 /**
  *
  * 
  */
-public class DaftarHunian {
- 
-    private int jumlahhunian = -1;
+public class DaftarAkun {
     
-    public DaftarHunian() {
+    private int jumlahakun = -1;
+    
+    public DaftarAkun() {
         emf = Persistence.createEntityManagerFactory("SiorPart1PU");
     }
     private EntityManagerFactory emf = null;
@@ -28,18 +29,18 @@ public class DaftarHunian {
     }
 
     /**
-     * @return the jumlahhunian
+     * @return the jumlahakun
      */
     
-    public int getJumlahHunian() {
+    public int getJumlahAkun() {
 
-        if (jumlahhunian == -1) {
+        if (jumlahakun == -1) {
             EntityManager em = null;
             try {
                 em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) FROM hunian as o");
+                Query q = em.createQuery("SELECT count(o) FROM akun as o");
                 Number jumlah = (Number) q.getSingleResult();
-                jumlahhunian = jumlah.intValue();
+                jumlahakun = jumlah.intValue();
 
             } catch (javax.persistence.EntityNotFoundException e) {
             } finally {
@@ -49,17 +50,17 @@ public class DaftarHunian {
             }
         }
 
-        return jumlahhunian;
+        return jumlahakun;
     }
 
-    public List<Hunian> seluruhDaftarHunian () {
-        List<Hunian> warga = null;
+    public List<Akun> seluruhDaftarAkun () {
+        List<Akun> akun = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM hunian as o ORDER BY o.kodehunian DESC");
+            Query q = em.createQuery("SELECT object(o) FROM akun as o ORDER BY o.username DESC");
             q.setMaxResults(10);
-            warga = q.getResultList();
+            akun = q.getResultList();
 
         } catch (javax.persistence.EntityNotFoundException e) {
         } finally {
@@ -67,24 +68,26 @@ public class DaftarHunian {
                 em.close();
             }
         }
-        return warga;
+        return akun;
     }
     
-     public void tambahHunian(Hunian hunian) {
+    public void tambahAkun(Akun akun) {
 
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            hunian.setKodehunian(null);
-            hunian.setKoderumah(null);
-            hunian.setNoktp(null);
-            hunian.setNamalengkap(null);
-            hunian.setTanggalmasukhari(0);
-            hunian.setTanggalmasukbulan(null);
-            hunian.setTanggalmasuktahun(0);
-            hunian.setTanggalkeluar(null);
-            em.persist(hunian);
+            akun.setUsername(null);
+            akun.setEmail(null);
+            akun.setPassword(null);
+            akun.setNamaakun(null);
+            akun.setJumlahrumah(Integer.valueOf(null));
+            akun.setRtakun(Integer.valueOf(null));
+            akun.setRwakun(Integer.valueOf(null));
+            akun.setKecamatanakun(null);
+            akun.setKelurahanakun(null);
+            akun.setKotaakun(null);
+            em.persist(akun);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -93,5 +96,4 @@ public class DaftarHunian {
         }
 
     }
-    
 }
