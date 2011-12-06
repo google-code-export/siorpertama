@@ -15,16 +15,13 @@
 }
 #apDiv2 {
 	position:absolute;
-	left:720px;
-	top:279px;
+	left:718px;
+	top:288px;
 	width:241px;
 	height:129px;
 	z-index:2;
 }
 </style>
-<script src="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryMenuBar.js" type="text/javascript"></script>
-<script src="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryCollapsiblePanel.js" type="text/javascript"></script>
-<link href="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #apDiv3 {
 	position:absolute;
@@ -35,7 +32,6 @@
 	z-index:3;
 }
 </style>
-<link href="file:///C|/Users/ntonk/AppData/Roaming/Adobe/Dreamweaver CS5.5/en_US/Configuration/Temp/Assets/eam7D02.tmp/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #apDiv4 {
 	position:absolute;
@@ -61,21 +57,49 @@ p {
 	z-index:5;
 }
 </style>
+<script type="text/javascript">
+function MM_jumpMenuGo(objId,targ,restore){ //v9.0
+  var selObj = null;  with (document) { 
+  if (getElementById) selObj = getElementById(objId);
+  if (selObj) eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0; }
+}
+</script>
 </head>
 
 <body>
-<div id="apDiv2">
-  <ul id="MenuBar1" class="MenuBarVertical">
-    <li><a href="#">Menu Utama</a></li>
-    <li><a href="#"> Keuangan</a></li>
-    <li><a href="#"> Hunian</a></li>
-  </ul>
+<div id="apDiv2"> 
+  <form name="form" id="form">
+    <select name="jumpMenu" id="jumpMenu">
+      <option>Menu Utama</option>
+      <option>Menu Keuangan</option>
+      <option>Menu Hunian</option>
+    </select>
+    <input type="button" name="go_button" id= "go_button" value="Go" onclick="MM_jumpMenuGo('jumpMenu','parent',0)" />
+  </form>
 </div>
-<div id="apDiv3">
-  <div id="CollapsiblePanel1" class="CollapsiblePanel">
-    <div class="CollapsiblePanelTab" tabindex="0">Notiifikasi Pengguna</div>
-    <div class="CollapsiblePanelContent">....</div>
-  </div>
+<div id="apDiv3"> 
+  <form id="form4" name="form4" method="post" action="">
+    <p>Notifikasi Pengguna</p>
+    <table width="242" height="165" border="1">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+  </form>
 </div>
 <div id="apDiv4">
   <form id="form2" name="form2" method="post" action="">
@@ -94,31 +118,22 @@ p {
 </div>
 <img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="691" height="220" /><p></p>
  <form id="form1" name="form1" method="post" action="">
-   <p>SiOR</p>
+   <p>SiOR Hunian</p>
    <p>&nbsp;</p>
-   <table width="658" height="684" border="1">
+   <table width="658" height="674" border="1">
      <tr>
         <td align="center">Target</td>
         <td align="center">Nama User</td>
-        <td align="center">Nama Warga </td>
-        <td align="center">&nbsp;</td>
-        <td align="center">&nbsp;</td>
-        <td align="center">&nbsp;</td>
+        <td align="center">Alamat</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang1" id="centang1" />
         <label for="centang1"></label></td>
         <td align="center">&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
       </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang2" id="centang2" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -126,15 +141,9 @@ p {
         <td align="center"><input type="checkbox" name="centang3" id="centang3" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang4" id="centang4" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -142,15 +151,9 @@ p {
         <td align="center"><input type="checkbox" name="centang5" id="centang5" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang6" id="centang6" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -158,15 +161,9 @@ p {
         <td align="center"><input type="checkbox" name="centang7" id="centang7" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang8" id="centang8" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -174,15 +171,9 @@ p {
         <td align="center"><input type="checkbox" name="centang9" id="centang9" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang10" id="centang10" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -190,15 +181,9 @@ p {
         <td align="center"><input type="checkbox" name="centang11" id="centang11" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang12" id="centang12" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -206,15 +191,9 @@ p {
         <td align="center"><input type="checkbox" name="centang13" id="centang13" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang14" id="centang14" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -222,15 +201,9 @@ p {
         <td align="center"><input type="checkbox" name="centang15" id="centang15" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang16" id="centang16" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -238,23 +211,14 @@ p {
         <td align="center"><input type="checkbox" name="centang17" id="centang17" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
         <td align="center"><input type="checkbox" name="centang18" id="centang18" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
      </tr>
       <tr>
-        <td align="center"><input type="checkbox" name="centang19" id="centang19" /></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td height="24" align="center"><input type="checkbox" name="centang19" id="centang19" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
      </tr>
@@ -279,9 +243,5 @@ p {
       </tr>
     </table>
 </div>
-<script type="text/javascript">
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
-</script>
 </body>
 </html>
