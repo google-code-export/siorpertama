@@ -4,89 +4,102 @@
     Author     : ntonk
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=iso-8859-1" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
-<script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
 <style type="text/css">
 #apDiv1 {
 	position:absolute;
-	left:12px;
-	top:13px;
-	width:258px;
-	height:104px;
+	left:717px;
+	top:15px;
+	width:237px;
+	height:182px;
 	z-index:1;
 }
 #apDiv2 {
 	position:absolute;
-	left:1096px;
-	top:32px;
-	width:276px;
-	height:198px;
-	z-index:1;
+	left:720px;
+	top:279px;
+	width:241px;
+	height:129px;
+	z-index:2;
 }
+</style>
+<style type="text/css">
 #apDiv3 {
 	position:absolute;
-	left:1064px;
-	top:24px;
-	width:178px;
-	height:193px;
-	z-index:1;
+	left:721px;
+	top:441px;
+	width:241px;
+	height:216px;
+	z-index:3;
+}
+</style>
+<style type="text/css">
+#apDiv4 {
+	position:absolute;
+	left:6px;
+	top:1050px;
+	width:678px;
+	height:40px;
+	z-index:4;
+	text-align: right;
+}
+#form1 p #Edit {
+	text-align: right;
+}
+p {
+	text-align: left;
+}
+#apDiv5 {
+	position:absolute;
+	left:10px;
+	top:1048px;
+	width:46px;
+	height:26px;
+	z-index:5;
 }
 </style>
 </head>
-<p></p>
-<p></p>
+
 <body>
-<div id="apDiv3">
-  <table width="180" height="197" border="1">
-    <tr>
-      <td>01-Dec-2011 4:07 PM</td>
-    </tr>
-    <tr>
-      <td>Selamat Datang Tamu !</td>
-    </tr>
-    <tr>
-      <td><form id="form1" name="form1" method="post" action="">
-        <input type="submit" name="si" id="si" value="Masuk" />
-        <input type="submit" name="re" id="re" value="Registrasi" />
-      </form></td>
-    </tr>
-  </table>
+<div id="apDiv5">
+  <form id="form3" name="form3" method="post" action="">
+    <input type="submit" name="go" id="go" value="GO" />
+  </form>
 </div>
-<p><img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="1059" height="214" /></p>
-<p></p>
-<div id="TabbedPanels1" class="TabbedPanels">
-  <ul class="TabbedPanelsTabGroup">
-    <li class="TabbedPanelsTab" tabindex="0">Apa itu SiOR?</li>
-    <li class="TabbedPanelsTab" tabindex="0">Proses Registrasi</li>
-    <li class="TabbedPanelsTab" tabindex="0">Persyaratan Anggota RT /RW</li>
-</ul>
-  <div class="TabbedPanelsContentGroup">
-    <div class="TabbedPanelsContent">
-      <form id="form2" name="form2" method="post" action="">
-        <label for="text1"></label>
-        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
-      </form>
-    </div>
-    <div class="TabbedPanelsContent"><form id="form2" name="form2" method="post" action="">
-        <label for="text1"></label>
-        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
-    </form></div>
-    <div class="TabbedPanelsContent"><form id="form2" name="form2" method="post" action="">
-        <label for="text1"></label>
-        <textarea name="text1" id="text1" cols="45" rows="5"></textarea>
-      </form></div>
-</div>
-</div>
-<script type="text/javascript">
-var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-</script>
+<img src="http://i1010.photobucket.com/albums/af230/ntonk59/Untitled-1.png" width="691" height="220" />
 <p></p>
 <p></p>
+<p></p>
+<form id="form1" name="form1" method="post" action="">
+<p>&nbsp;</p>
+  <p>&nbsp;</p>
+</form>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="apDiv1">
+    <table width="236" height="236" border="1">
+      <tr>
+        <td width="114" height="56">01-Dec-2011 5:02 PM</td>
+      </tr>
+      <tr>
+        <td height="68"><p>Selamat Datang Tamu !</p></td>
+      </tr>
+      <tr>
+        <td height="50">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="50" align="center"><input type="submit" name="So" id="So" value="Masuk" />
+        <input type="submit" name="Reg" id="Reg" value="Registrasi" /></td>
+      </tr>
+    </table>
+</div>
 </body>
 </html>
+
