@@ -9,15 +9,22 @@ import entity.Keluarga;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.annotation.WebServlet;
 /**
  *
  * @author 1015
  */
 
-
+@WebServlet(name = "tambahkeluarga", urlPatterns = {"/tambahkeluarga"})
 public class HalamanTambahKeluarga extends Boundary {
+    
+    public HalamanTambahKeluarga(){
+        super();
+        setTemplate("/WEB-INF/jsp/gui_tambah_keluarga.jsp");
+    }
+    
     @Override
-protected void process() {
+    protected void process() {
         
         setMessage("");
 
@@ -25,18 +32,13 @@ protected void process() {
             try {
                 if (validate_kodekeluarga()) {
                     if (validate_anggotakeluarga()) {
-                      if(validate_kepalakeluarga()) {
+                        if(validate_kepalakeluarga()) {
                                     DaftarKeluarga dr = new DaftarKeluarga();
                                     Keluarga keluarga = new Keluarga();
-                                    String keluargaHtml = getRequest().getParameter("keluarga");
-                                    String kodeRumahHtml = getRequest().getParameter("koderumah");
-                                    String alamatRumahHtml = getRequest().getParameter("alamatrumah");
-                                    String kelurahanRumahHtml = getRequest().getParameter("kelurahanrumah");
-                                    String kecamatanRumahHtml = getRequest().getParameter("kecamatanrumah");
-                                    String kotaRumahHtml = getRequest().getParameter("kotarumah");
-                                    keluarga.setAnggotakeluarga(4);
-                                    keluarga.setKepalakeluarga(keluargaHtml);
-                                    keluarga.setKodekeluarga(keluargaHtml);
+                                    String kepalakeluargaHtml = getRequest().getParameter("kepalakeluarga");
+                                    String anggotakeluargaHtml = getRequest().getParameter("anggotakeluarga");
+                                    keluarga.setAnggotakeluarga(anggotakeluargaHtml);
+                                    keluarga.setKepalakeluarga(kepalakeluargaHtml);
                                     dr.tambahKeluarga(keluarga);
                         }
                     }

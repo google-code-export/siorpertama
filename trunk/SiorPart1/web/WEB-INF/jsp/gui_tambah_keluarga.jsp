@@ -34,30 +34,18 @@
     </tr>
   </table>
 </div>
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="tambahkeluarga" method="post" name="tambahkeluarga" id="tambahkeluarga">
   <p>SiOR</p>
   <p>&nbsp;</p>
   <p>Isilah form di bawah ini :</p>
   <table width="693" border="0">
     <tr>
-      <td width="172">Kode Keluarga </td>
+      <td width="172">Kepala Keluarga </td>
       <td width="7">:</td>
-      <td width="144"><input type="text" name="txt_kodekeluarga" /></td>
+      <td width="144"><input type="text" name="kepalakeluarga" /></td>
       <td width="98">Anggota Keluarga </td>
       <td width="6">:</td>
-      <td width="226"><input type="file" name="txt_anggotakeluarga" /></td>
-    </tr>
-  </table>
-  <table width="344" border="0">
-    <tr>
-      <td width="172">ID KTP Kepala Keluarga </td>
-      <td width="8">:</td>
-      <td width="142">&nbsp;</td>
-    </tr>
-    <tr>
-      <td>Jumlah Anggota Keluarga </td>
-      <td>:</td>
-      <td>&nbsp;</td>
+      <td width="226"><input type="text" name="txt_anggotakeluarga" /></td>
     </tr>
   </table>
   <p>&nbsp;</p>

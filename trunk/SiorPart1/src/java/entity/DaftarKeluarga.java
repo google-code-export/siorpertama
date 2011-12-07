@@ -15,10 +15,10 @@ import javax.persistence.Query;
  * @author 1015
  */
 public class DaftarKeluarga {
-    private int jumlahrumah = -1;
+    private int jumlahkeluarga = -1;
     
     public DaftarKeluarga() {
-        emf = Persistence.createEntityManagerFactory("SiORpertama");
+        emf = Persistence.createEntityManagerFactory("SiorPart1PU");
     }
     private EntityManagerFactory emf = null;
 
@@ -31,13 +31,13 @@ public class DaftarKeluarga {
      */
     public int getJumlahKeluarga() {
 
-        if (jumlahrumah == -1) {
+        if (jumlahkeluarga == -1) {
             EntityManager em = null;
             try {
                 em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) FROM rumah as o");
+                Query q = em.createQuery("SELECT count(o) FROM keluarga as o");
                 Number jumlah = (Number) q.getSingleResult();
-                jumlahrumah = jumlah.intValue();
+                jumlahkeluarga = jumlah.intValue();
 
             } catch (javax.persistence.EntityNotFoundException e) {
             } finally {
@@ -47,7 +47,7 @@ public class DaftarKeluarga {
             }
         }
 
-        return jumlahrumah;
+        return jumlahkeluarga;
     }
 
     public List<Rumah> seluruhDaftarKeluarga () {
@@ -55,7 +55,7 @@ public class DaftarKeluarga {
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM rumah as o ORDER BY o.id DESC");
+            Query q = em.createQuery("SELECT object(o) FROM keluarga as o ORDER BY o.id DESC");
             q.setMaxResults(10);
             rumah = q.getResultList();
 
@@ -74,9 +74,6 @@ public class DaftarKeluarga {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            keluarga.setAnggotakeluarga(jumlahrumah);
-            keluarga.setKepalakeluarga(null);
-            keluarga.setKodekeluarga(null);
             em.persist(keluarga);
             em.getTransaction().commit();
         } finally {
