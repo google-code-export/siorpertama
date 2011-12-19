@@ -26,8 +26,10 @@ public class Gaji implements Serializable {
     private String kodebayar;
     private String jenisgaji;
     private String penerimagaji;
-    private int bulangaji;
+    private String bulangaji;
     private int jumlahgaji;
+    private int tahungaji;
+    
     @Temporal(TemporalType.DATE)
     private Date tanggalgaji;
 
@@ -63,11 +65,11 @@ public class Gaji implements Serializable {
         this.penerimagaji = penerimagaji;
     }
 
-    public int getBulangaji() {
+    public String getBulangaji() {
         return bulangaji;
     }
 
-    public void setBulangaji(int bulangaji) {
+    public void setBulangaji(String bulangaji) {
         this.bulangaji = bulangaji;
     }
 
@@ -87,6 +89,14 @@ public class Gaji implements Serializable {
         this.tanggalgaji = tanggalgaji;
     }
 
+    public int getTahungaji() {
+        return tahungaji;
+    }
+    
+    public void setTahungaji (int tahungaji) {
+        this.tahungaji = tahungaji;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
