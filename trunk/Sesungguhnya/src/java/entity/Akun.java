@@ -5,25 +5,17 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ntonk
  */
-@Entity
+/*@Entity
 @Table(name = "akun")
 @XmlRootElement
-@NamedQueries({
+  @NamedQueries({
     @NamedQuery(name = "Akun.findAll", query = "SELECT a FROM Akun a"),
     @NamedQuery(name = "Akun.findByUsername", query = "SELECT a FROM Akun a WHERE a.username = :username"),
     @NamedQuery(name = "Akun.findByPassword", query = "SELECT a FROM Akun a WHERE a.password = :password"),
@@ -36,86 +28,23 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Akun.findByKotaakun", query = "SELECT a FROM Akun a WHERE a.kotaakun = :kotaakun"),
     @NamedQuery(name = "Akun.findByJumlahrumah", query = "SELECT a FROM Akun a WHERE a.jumlahrumah = :jumlahrumah"),
     @NamedQuery(name = "Akun.findByIduser", query = "SELECT a FROM Akun a WHERE a.iduser = :iduser")})
+*/
 public class Akun implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "username")
-    private String username;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "password")
-    private String password;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "email")
-    private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "namaakun")
-    private String namaakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "rtakun")
-    private String rtakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "rwakun")
-    private String rwakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kelurahanakun")
-    private String kelurahanakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kecamatanakun")
-    private String kecamatanakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kotaakun")
-    private String kotaakun;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "jumlahrumah")
-    private String jumlahrumah;
+
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "iduser")
-    private String iduser;
-
-    public Akun() {
-    }
-
-    public Akun(String iduser) {
-        this.iduser = iduser;
-    }
-
-    public Akun(String iduser, String username, String password, String email, String namaakun, String rtakun, String rwakun, String kelurahanakun, String kecamatanakun, String kotaakun, String jumlahrumah) {
-        this.iduser = iduser;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.namaakun = namaakun;
-        this.rtakun = rtakun;
-        this.rwakun = rwakun;
-        this.kelurahanakun = kelurahanakun;
-        this.kecamatanakun = kecamatanakun;
-        this.kotaakun = kotaakun;
-        this.jumlahrumah = jumlahrumah;
-    }
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idAkun;
+    private String username;
+    private String password;
+    private String email;
+    private String namaakun;
+    private String rtakun;
+    private String rwakun;
+    private String kelurahanakun;
+    private String kecamatanakun;
+    private String kotaakun;
+    private String jumlahrumah;
 
     public String getUsername() {
         return username;
@@ -197,18 +126,18 @@ public class Akun implements Serializable {
         this.jumlahrumah = jumlahrumah;
     }
 
-    public String getIduser() {
-        return iduser;
+    public Long getIdakun() {
+        return idAkun;
     }
 
-    public void setIduser(String iduser) {
-        this.iduser = iduser;
+    public void setIdakun(Long idAkun) {
+        this.idAkun = idAkun;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (iduser != null ? iduser.hashCode() : 0);
+        hash += (idAkun != null ? idAkun.hashCode() : 0);
         return hash;
     }
 
@@ -219,7 +148,7 @@ public class Akun implements Serializable {
             return false;
         }
         Akun other = (Akun) object;
-        if ((this.iduser == null && other.iduser != null) || (this.iduser != null && !this.iduser.equals(other.iduser))) {
+        if ((this.idAkun == null && other.idAkun != null) || (this.idAkun != null && !this.idAkun.equals(other.idAkun))) {
             return false;
         }
         return true;
@@ -227,7 +156,15 @@ public class Akun implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Akun[ iduser=" + iduser + " ]";
+        return "entity.Akun[ idAkun=" + idAkun + " ]";
+    }
+
+    public Long getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(Long idAkun) {
+        this.idAkun = idAkun;
     }
     
 }
