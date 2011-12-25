@@ -5,22 +5,13 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
  *
  * @author ntonk
  */
-@Entity
+/*@Entity
 @Table(name = "warga")
 @XmlRootElement
 @NamedQueries({
@@ -38,104 +29,35 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Warga.findByKewarganegaraanktp", query = "SELECT w FROM Warga w WHERE w.kewarganegaraanktp = :kewarganegaraanktp"),
     @NamedQuery(name = "Warga.findByKodekeluarga", query = "SELECT w FROM Warga w WHERE w.kodekeluarga = :kodekeluarga"),
     @NamedQuery(name = "Warga.findByTanggallahir", query = "SELECT w FROM Warga w WHERE w.tanggallahir = :tanggallahir")})
+*/
+
 public class Warga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idktp")
-    private Integer idktp;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "noktp")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idWarga;
     private int noktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "namalengkap")
     private String namalengkap;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "tempatlahir")
     private String tempatlahir;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "alamat")
     private String alamat;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kotaktp")
     private String kotaktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kelurahanktp")
     private String kelurahanktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kecamatanktp")
     private String kecamatanktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "rtktp")
     private String rtktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "rwktp")
     private String rwktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kewarganegaraanktp")
     private String kewarganegaraanktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kodekeluarga")
     private String kodekeluarga;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "tanggallahir")
     private String tanggallahir;
 
-    public Warga() {
-    }
 
-    public Warga(Integer idktp) {
-        this.idktp = idktp;
+    public Long getIdWarga() {
+        return idWarga;
     }
-
-    public Warga(Integer idktp, int noktp, String namalengkap, String tempatlahir, String alamat, String kotaktp, String kelurahanktp, String kecamatanktp, String rtktp, String rwktp, String kewarganegaraanktp, String kodekeluarga, String tanggallahir) {
-        this.idktp = idktp;
-        this.noktp = noktp;
-        this.namalengkap = namalengkap;
-        this.tempatlahir = tempatlahir;
-        this.alamat = alamat;
-        this.kotaktp = kotaktp;
-        this.kelurahanktp = kelurahanktp;
-        this.kecamatanktp = kecamatanktp;
-        this.rtktp = rtktp;
-        this.rwktp = rwktp;
-        this.kewarganegaraanktp = kewarganegaraanktp;
-        this.kodekeluarga = kodekeluarga;
-        this.tanggallahir = tanggallahir;
+    
+    public void setIdWarga(Long idWarga) {
+        this.idWarga = idWarga;
     }
-
-    public Integer getIdktp() {
-        return idktp;
-    }
-
-    public void setIdktp(Integer idktp) {
-        this.idktp = idktp;
-    }
-
+    
     public int getNoktp() {
         return noktp;
     }
@@ -235,7 +157,7 @@ public class Warga implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idktp != null ? idktp.hashCode() : 0);
+        hash += (idWarga != null ? idWarga.hashCode() : 0);
         return hash;
     }
 
@@ -246,7 +168,7 @@ public class Warga implements Serializable {
             return false;
         }
         Warga other = (Warga) object;
-        if ((this.idktp == null && other.idktp != null) || (this.idktp != null && !this.idktp.equals(other.idktp))) {
+        if ((this.idWarga == null && other.idWarga != null) || (this.idWarga != null && !this.idWarga.equals(other.idWarga))) {
             return false;
         }
         return true;
@@ -254,7 +176,15 @@ public class Warga implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Warga[ idktp=" + idktp + " ]";
+        return "entity.Warga[ idWarga=" + idWarga + " ]";
     }
+    
+    /*public boolean isNoKTPNoChange(String noktp) {
+        if (noktp.equalsIgnoreCase(this.noktp)) {
+            return true;
+        } else {
+            return false;
+        }
+    }*/
     
 }

@@ -126,14 +126,15 @@ public class Akun implements Serializable {
         this.jumlahrumah = jumlahrumah;
     }
 
-    public Long getIdakun() {
+        public Long getIdAkun() {
         return idAkun;
     }
 
-    public void setIdakun(Long idAkun) {
+    public void setIdAkun(Long idAkun) {
         this.idAkun = idAkun;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -159,12 +160,19 @@ public class Akun implements Serializable {
         return "entity.Akun[ idAkun=" + idAkun + " ]";
     }
 
-    public Long getIdAkun() {
-        return idAkun;
-    }
-
-    public void setIdAkun(Long idAkun) {
-        this.idAkun = idAkun;
+    public boolean isUsernameNoChange(String username) {
+        if (username.equalsIgnoreCase(this.username)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
+    public boolean isEmailNoChange(String email) {
+        if (email.equalsIgnoreCase(this.email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

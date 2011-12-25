@@ -6,24 +6,13 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
  *
  * @author ntonk
  */
-@Entity
+/*@Entity
 @Table(name = "hunian")
 @XmlRootElement
 @NamedQueries({
@@ -34,55 +23,31 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Hunian.findByNamalengkap", query = "SELECT h FROM Hunian h WHERE h.namalengkap = :namalengkap"),
     @NamedQuery(name = "Hunian.findByTanggalmasuk", query = "SELECT h FROM Hunian h WHERE h.tanggalmasuk = :tanggalmasuk"),
     @NamedQuery(name = "Hunian.findByTanggalkeluar", query = "SELECT h FROM Hunian h WHERE h.tanggalkeluar = :tanggalkeluar")})
+*/
+
 public class Hunian implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "kodehunian")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idHunian;
+    
     private String kodehunian;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "noktp")
     private int noktp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "koderumah")
     private String koderumah;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "namalengkap")
     private String namalengkap;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "tanggalmasuk")
     @Temporal(TemporalType.DATE)
     private Date tanggalmasuk;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "tanggalkeluar")
     @Temporal(TemporalType.DATE)
     private Date tanggalkeluar;
 
-    public Hunian() {
+    public Long getIdHunian() {
+        return idHunian;
     }
-
-    public Hunian(String kodehunian) {
-        this.kodehunian = kodehunian;
+    
+    public void setIdHunian(Long idHunian) {
+        this.idHunian = idHunian;
     }
-
-    public Hunian(String kodehunian, int noktp, String koderumah, String namalengkap, Date tanggalmasuk, Date tanggalkeluar) {
-        this.kodehunian = kodehunian;
-        this.noktp = noktp;
-        this.koderumah = koderumah;
-        this.namalengkap = namalengkap;
-        this.tanggalmasuk = tanggalmasuk;
-        this.tanggalkeluar = tanggalkeluar;
-    }
-
+    
     public String getKodehunian() {
         return kodehunian;
     }
@@ -134,7 +99,7 @@ public class Hunian implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (kodehunian != null ? kodehunian.hashCode() : 0);
+        hash += (idHunian != null ? idHunian.hashCode() : 0);
         return hash;
     }
 
@@ -145,7 +110,7 @@ public class Hunian implements Serializable {
             return false;
         }
         Hunian other = (Hunian) object;
-        if ((this.kodehunian == null && other.kodehunian != null) || (this.kodehunian != null && !this.kodehunian.equals(other.kodehunian))) {
+        if ((this.idHunian == null && other.idHunian != null) || (this.idHunian != null && !this.idHunian.equals(other.idHunian))) {
             return false;
         }
         return true;
@@ -153,7 +118,16 @@ public class Hunian implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Hunian[ kodehunian=" + kodehunian + " ]";
+        return "entity.Hunian[ idHunian=" + idHunian + " ]";
     }
+    
+    public boolean isKodeNoChange(String kode) {
+        if (kode.equalsIgnoreCase(this.kodehunian)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+        
     
 }
