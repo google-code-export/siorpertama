@@ -48,7 +48,7 @@ public class DaftarWarga implements Serializable {
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
-            if (findWarga(warga.getIdktp()) != null) {
+            if (findWarga(warga.getNoktp()) != null) {
                 throw new PreexistingEntityException("Warga " + warga + " already exists.", ex);
             }
             throw ex;
@@ -74,9 +74,9 @@ public class DaftarWarga implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = warga.getIdktp();
+                Integer id = warga.getNoktp();
                 if (findWarga(id) == null) {
-                    throw new NonexistentEntityException("The warga with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("Warga dengan nomor KTP  " + id + " tidak terdaftar");
                 }
             }
             throw ex;
@@ -95,7 +95,7 @@ public class DaftarWarga implements Serializable {
             Warga warga;
             try {
                 warga = em.getReference(Warga.class, id);
-                warga.getIdktp();
+                int noktp = warga.getNoktp();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The warga with id " + id + " no longer exists.", enfe);
             }
