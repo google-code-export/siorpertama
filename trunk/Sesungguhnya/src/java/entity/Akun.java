@@ -34,7 +34,7 @@ public class Akun implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idAkun;
+    private String IdAkun;
     private String username;
     private String password;
     private String email;
@@ -45,6 +45,7 @@ public class Akun implements Serializable {
     private String kecamatanakun;
     private String kotaakun;
     private String jumlahrumah;
+    
 
     public String getUsername() {
         return username;
@@ -126,19 +127,19 @@ public class Akun implements Serializable {
         this.jumlahrumah = jumlahrumah;
     }
 
-        public Long getIdAkun() {
-        return idAkun;
+    public String getIdAkun() {
+        return IdAkun;
     }
 
-    public void setIdAkun(Long idAkun) {
-        this.idAkun = idAkun;
+    public void setIdAkun(String IdAkun) {
+        this.IdAkun = IdAkun;
     }
 
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idAkun != null ? idAkun.hashCode() : 0);
+        hash += (IdAkun != null ? IdAkun.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +150,7 @@ public class Akun implements Serializable {
             return false;
         }
         Akun other = (Akun) object;
-        if ((this.idAkun == null && other.idAkun != null) || (this.idAkun != null && !this.idAkun.equals(other.idAkun))) {
+        if ((this.IdAkun == null && other.IdAkun != null) || (this.IdAkun != null && !this.IdAkun.equals(other.IdAkun))) {
             return false;
         }
         return true;
@@ -157,7 +158,7 @@ public class Akun implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Akun[ idAkun=" + idAkun + " ]";
+        return "entity.Akun[ idAkun=" + IdAkun + " ]";
     }
 
     public boolean isUsernameNoChange(String username) {
