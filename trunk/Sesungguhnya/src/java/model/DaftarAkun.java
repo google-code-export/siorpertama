@@ -6,16 +6,20 @@ package model;
 
 import entity.Akun;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import model.exceptions.NonexistentEntityException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
-import model.exceptions.NonexistentEntityException;
-import model.exceptions.PreexistingEntityException;
 import model.exceptions.RollbackFailureException;
 
 /**
@@ -24,34 +28,46 @@ import model.exceptions.RollbackFailureException;
  */
 public class DaftarAkun implements Serializable {
 
-    public DaftarAkun(UserTransaction utx, EntityManagerFactory emf) {
-        this.utx = utx;
-        this.emf = emf;
+    public DaftarAkun() {
+       emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
+       
     }
-    private UserTransaction utx = null;
     private EntityManagerFactory emf = null;
+    private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+    public List<Akun> getUsername() {
+        List<Akun> akun = new ArrayList<Akun>();
 
-    public void create(Akun akun) throws PreexistingEntityException, RollbackFailureException, Exception {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT a FROM warga AS a");
+            akun = q.getResultList();
+
+        } finally {
+            em.close();
+        }
+        return akun;
+    }
+    
+    public Akun findAkun(Integer id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Akun.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    public void tambahAkun(Akun akun) {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             em.persist(akun);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findAkun(akun.getIduser()) != null) {
-                throw new PreexistingEntityException("Akun " + akun + " already exists.", ex);
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -59,8 +75,8 @@ public class DaftarAkun implements Serializable {
         }
     }
 
-    public void edit(Akun akun) throws NonexistentEntityException, RollbackFailureException, Exception {
-        EntityManager em = null;
+    public void editAkun(Akun akun) throws RollbackFailureException, NonexistentEntityException{
+    EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
@@ -74,17 +90,21 @@ public class DaftarAkun implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = akun.getIduser();
+                String id = akun.getIdAkun();
                 if (findAkun(id) == null) {
-                    throw new NonexistentEntityException("The akun with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("Warga dengan user id" + " "+ id +" " + " no longer exists.");
                 }
             }
-            throw ex;
+            try {
+                throw ex;
+            } catch (Exception ex1) {
+                Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         } finally {
             if (em != null) {
                 em.close();
             }
-        }
+         }
     }
 
     public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
@@ -95,7 +115,7 @@ public class DaftarAkun implements Serializable {
             Akun akun;
             try {
                 akun = em.getReference(Akun.class, id);
-                akun.getIduser();
+                akun.getIdAkun();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The akun with id " + id + " no longer exists.", enfe);
             }
@@ -160,5 +180,7 @@ public class DaftarAkun implements Serializable {
             em.close();
         }
     }
+
+    
     
 }
