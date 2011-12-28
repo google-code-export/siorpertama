@@ -167,6 +167,8 @@ public class Akun implements Serializable {
             return false;
         }
     }
+
+    
     
     public boolean isEmailNoChange(String email) {
         if (email.equalsIgnoreCase(this.email)) {
