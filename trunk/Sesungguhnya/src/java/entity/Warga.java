@@ -35,7 +35,7 @@ public class Warga implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idWarga;
+    private String idWarga;
     private int noktp;
     private String namalengkap;
     private String tempatlahir;
@@ -50,11 +50,11 @@ public class Warga implements Serializable {
     private String tanggallahir;
 
 
-    public Long getIdWarga() {
+    public String getIdWarga() {
         return idWarga;
     }
     
-    public void setIdWarga(Long idWarga) {
+    public void setIdWarga(String idWarga) {
         this.idWarga = idWarga;
     }
     
