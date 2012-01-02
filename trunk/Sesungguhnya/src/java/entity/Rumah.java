@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Putri A.
+ * @author Meylindra Ap
  */
 @Entity
 public class Rumah implements Serializable {
