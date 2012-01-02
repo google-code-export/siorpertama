@@ -58,11 +58,11 @@ public class EditAkun extends HttpServlet {
              if (cekAkun == null) {
                 JOptionPane.showMessageDialog(null, "Akun tidak ada yang dipilih",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/keluarga_indos.jsp";
+                jsp = "halaman/akun.jsp";
             } else if (cekAkun.length > 1) {
                 JOptionPane.showMessageDialog(null, "Pilih salah satu akun !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/keluarga_indos.jsp";
+                jsp = "halaman/akun.jsp";
             } else {
                 Integer idAkun = Integer.parseInt(cekAkun[0]);
                 Akun akun = daftarAkun.findAkun(idAkun);
