@@ -6,18 +6,17 @@ package servlet;
 
 import comparator.HunianComparator;
 import entity.Hunian;
-import model.DaftarHunian;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+import model.DaftarHunian;
 
 /**
  *
@@ -48,19 +47,19 @@ public class EditHunian extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-          DaftarHunian daftarHunian = new DaftarHunian();
+            DaftarHunian daftarHunian = new DaftarHunian();
             List<Hunian> listHunian = daftarHunian.getHunianid();
             Collections.sort(listHunian, new HunianComparator());
             request.setAttribute("list_hunian", listHunian);
             String jsp = "";
             String cekHunian[] = request.getParameterValues("cek_hunian");
-            
-             if (cekHunian == null) {
+             
+            if (cekHunian == null) {
                 JOptionPane.showMessageDialog(null, "tidak ada hunian yang dipilih",
                         "Error!",JOptionPane.WARNING_MESSAGE);
                 jsp = "halaman/Hunian.jsp";
             } else if (cekHunian.length > 1) {
-                JOptionPane.showMessageDialog(null, "Pilih salah satu hunian !",
+                JOptionPane.showMessageDialog(null, "Pilih salah satu hunian saja !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
                 jsp = "halaman/Hunian.jsp";
             } else {
@@ -70,12 +69,8 @@ public class EditHunian extends HttpServlet {
                 jsp = "/halaman/edit_hunian.jsp";
             }
              
-              RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
-            requestDispatcher.forward(request, response);
         } finally {            
             out.close();
-        }
-
         }
     }
 
