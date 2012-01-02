@@ -79,12 +79,12 @@ public class ProsesEditAkun extends HttpServlet {
                 request.setAttribute("akun_edit", user);
                 jsp = "halaman/edit_akun.jsp";  
             } //validate record on database
-           // else if (daftarakun.isKodeExist && !username.isKodeNoChange(kdkeluarga)) {
-               // JOptionPane.showMessageDialog(null, "Kode Keluarga sudah ada dalam database !",
-               //         "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-               // request.setAttribute("keluarga_edit", keluarga);
-               // jsp = "halaman/edit_keluarga.jsp";
-           // } //validate nmbankpos on database
+           //else if (daftarakun.isKodeExist && !username.isKodeNoChange(kdkeluarga)) {
+             // JOptionPane.showMessageDialog(null, "Kode Keluarga sudah ada dalam database !",
+               //      "Kesalahan!",JOptionPane.WARNING_MESSAGE);
+              //request.setAttribute("keluarga_edit", keluarga);
+               //jsp = "halaman/edit_keluarga.jsp";
+          } //validate nmbankpos on database
              else {
                 user.setIdAkun(userid);
                 user.setUsername(username);
