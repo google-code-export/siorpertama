@@ -35,7 +35,7 @@ public class DaftarHunian implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Hunian hunian) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void TambahHunian(Hunian hunian) throws PreexistingEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -59,7 +59,7 @@ public class DaftarHunian implements Serializable {
         }
     }
 
-    public void edit(Hunian hunian) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void editHunian(Hunian hunian) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
