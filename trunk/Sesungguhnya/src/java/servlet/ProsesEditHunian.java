@@ -114,7 +114,15 @@ public class ProsesEditHunian extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
@@ -127,7 +135,15 @@ public class ProsesEditHunian extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
