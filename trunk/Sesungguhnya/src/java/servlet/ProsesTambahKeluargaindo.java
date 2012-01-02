@@ -60,27 +60,22 @@ public class ProsesTambahKeluargaindo extends HttpServlet {
             
             //validate blank field
             if (kdkeluarga.equals("")) {
-                JOptionPane.showMessageDialog(null, "Kode Keluarga tidak boleh kosong !", 
-                        "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-                jsp = "pages/tambah_keluargas.jsp";
+                out.println("Kode Keluarga tidak boleh kosong !");
+                jsp = "halaman/tambah_keluargas.jsp";
             } else if (kepkeluarga.equals("")) {
-                JOptionPane.showMessageDialog(null, "Kepala Keluarga tidak boleh kosong !",
-                        "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-                jsp = "pages/tambah_keluargas.jsp";            
+                out.println("Kepala Keluarga tidak boleh kosong !");
+                jsp = "halaman/tambah_keluargas.jsp";            
             } else if (anggotakel1.equals("")) {
-                JOptionPane.showMessageDialog(null, "Anggota Keluarga tidak boleh kosong !",
-                        "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-                jsp = "pages/tambah_keluargas.jsp";            
+		out.println("Anggota Keluarga tidak boleh kosong !");
+                jsp = "halaman/tambah_keluargas.jsp";            
             }          
              //validate zero value
             else if (kdkeluarga.equalsIgnoreCase("000000")) {
-                JOptionPane.showMessageDialog(null, "Kode Keluarga tidak boleh bernilai nol !",
-                        "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-                jsp = "pages/tambah_keluargas.jsp";
+                out.println("Kode Keluarga tidak boleh bernilai nol !");
+                jsp = "halaman/tambah_keluargas.jsp";
             } //validate record on database
             else if (daftarKeluarga.isKodeExist(kdkeluarga)) {
-                JOptionPane.showMessageDialog(null, "Kode Keluarga sudah ada dalam database !",
-                        "Kesalahan!",JOptionPane.WARNING_MESSAGE);
+                out.println("Kode Keluarga sudah ada dalam database !");
                 jsp = "pages/tambah_keluargas.jsp";
             } else {
                 keluarga.setKodekel(kdkeluarga);

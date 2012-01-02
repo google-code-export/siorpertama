@@ -6,7 +6,6 @@ package servlet;
 
 import comparator.RumahComparator;
 import entity.Rumah;
-import model.DaftarRumah;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -17,14 +16,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
+import model.DaftarRumah;
 
 /**
  *
  * @author Putri A.
  */
-@WebServlet(name = "ProsesTambahRumah", urlPatterns = {"/proses_tambah_rumah"})
-public class ProsesTambahRumah extends HttpServlet {
+@WebServlet(name = "ProsesLihatRumah", urlPatterns = {"/proses_lihat_rumah"})
+public class ProsesLihatRumah extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,62 +40,26 @@ public class ProsesTambahRumah extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProsesTambahKeluargaindo</title>");  
+            out.println("<title>Servlet ProsesLihatGaji</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProsesTambahKeluargaindo at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProsesLihatGaji at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
             
-            Rumah rumah = new Rumah();
             DaftarRumah daftarRumah = new DaftarRumah();
+            Rumah rumah = new Rumah();
+            
             String jsp = "";
-
-            String kdrumah = request.getParameter("kode_rumah");
-            String almtrumah = request.getParameter("alamat_rumah");
-            String rtrumah1 = request.getParameter("rt_rumah");
-            String rwrumah1 = request.getParameter("rw_rumah");
-            String kelrumah = request.getParameter("kelurahan_rumah");
-            String kecrumah = request.getParameter("kecamatan_rumah");
-            String ktrumah = request.getParameter("kota_rumah");
-            String provrumah = request.getParameter("provinsi_rumah");
+            jsp ="halaman/lihat_rumah.jsp";
             
-            int rtrumah = Integer.parseInt(rtrumah1);
-            int rwrumah = Integer.parseInt(rwrumah1);
-                    
-            
-            //validate blank field
-            if (kdrumah.equals("") || almtrumah.equals("") || rtrumah1.equals("") 
-                    || rwrumah1.equals("") || kelrumah.equals("") || kecrumah.equals("")
-                    || ktrumah.equals("") || provrumah.equals("")) {
-                jsp = "halaman/gui_tambah_error1.jsp";   
-            } 
-             //validate zero value
-            else if (kdrumah.equalsIgnoreCase("000000")) {
-                jsp = "halaman/gui_tambah_error1.jsp";
-            } //validate record on database
-            else if (daftarRumah.isKodeExist(kdrumah)) {
-                jsp = "halaman/gui_tambah_error1.jsp";
-            } else {
-                rumah.setKodeRumah(kdrumah);
-                rumah.setAlamatRumah(almtrumah);
-                rumah.setRT(rtrumah);
-                rumah.setRW(rwrumah);
-                rumah.setKelurahan(kelrumah);
-                rumah.setKecamatan(kecrumah);
-                rumah.setKota(ktrumah);
-                rumah.setPovinsi(provrumah);
-                daftarRumah.tambahRumah(rumah);
-                jsp = "halaman/lihat_rumah.jsp";
-            }
-
             List<Rumah> listRumah = daftarRumah.getRumah();
             Collections.sort(listRumah, new RumahComparator());
             request.setAttribute("list_rumah", listRumah);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
-
+ 
             
         } finally {            
             out.close();
