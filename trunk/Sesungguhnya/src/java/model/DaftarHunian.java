@@ -6,6 +6,7 @@ package model;
 
 import entity.Hunian;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,6 +35,20 @@ public class DaftarHunian implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    public List<Hunian> getHunianid() {
+        List<Hunian> hunian = new ArrayList<Hunian>();
+
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT a FROM Keluargaindo AS a");
+            hunian = q.getResultList();
+
+        } finally {
+            em.close();
+        }
+        return hunian;
+    }
+
 
     public void TambahHunian(Hunian hunian) throws PreexistingEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
