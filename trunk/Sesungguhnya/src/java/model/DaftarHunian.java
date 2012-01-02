@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
@@ -24,12 +25,11 @@ import model.exceptions.RollbackFailureException;
  */
 public class DaftarHunian implements Serializable {
 
-    public DaftarHunian(UserTransaction utx, EntityManagerFactory emf) {
-        this.utx = utx;
-        this.emf = emf;
+    public DaftarHunian() {
+        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
     }
-    private UserTransaction utx = null;
     private EntityManagerFactory emf = null;
+    private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
