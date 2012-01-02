@@ -29,7 +29,7 @@ public class Hunian implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idHunian;
+    private String idHunian;
     
     private String kodehunian;
     private int noktp;
@@ -40,11 +40,11 @@ public class Hunian implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date tanggalkeluar;
 
-    public Long getIdHunian() {
+    public String getIdHunian() {
         return idHunian;
     }
     
-    public void setIdHunian(Long idHunian) {
+    public void setIdHunian(String idHunian) {
         this.idHunian = idHunian;
     }
     
