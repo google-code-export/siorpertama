@@ -6,52 +6,73 @@ package model;
 
 import entity.Warga;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import model.exceptions.NonexistentEntityException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
-import model.exceptions.NonexistentEntityException;
-import model.exceptions.PreexistingEntityException;
 import model.exceptions.RollbackFailureException;
 
 /**
  *
  * @author ntonk
  */
+/**
+ *
+ * @author ntonk
+ */
 public class DaftarWarga implements Serializable {
 
-    public DaftarWarga(UserTransaction utx, EntityManagerFactory emf) {
-        this.utx = utx;
-        this.emf = emf;
+    public DaftarWarga() {
+        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
+       
     }
-    private UserTransaction utx = null;
     private EntityManagerFactory emf = null;
+    private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+    public List<Warga> getIdWarga() {
+        List<Warga> warga = new ArrayList<Warga>();
 
-    public void create(Warga warga) throws PreexistingEntityException, RollbackFailureException, Exception {
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT a FROM warga AS a");
+            warga = q.getResultList();
+
+        } finally {
+            em.close();
+        }
+        return warga;
+    }
+    
+    public Warga findWarga(Integer id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Warga.class, id);
+        } finally {
+            em.close();
+        }
+    }
+
+    public void tambahWarga(Warga warga) {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             em.persist(warga);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findWarga(warga.getNoktp()) != null) {
-                throw new PreexistingEntityException("Warga " + warga + " already exists.", ex);
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -59,8 +80,9 @@ public class DaftarWarga implements Serializable {
         }
     }
 
-    public void edit(Warga warga) throws NonexistentEntityException, RollbackFailureException, Exception {
-        EntityManager em = null;
+
+   public void editWarga(Warga warga) throws RollbackFailureException, NonexistentEntityException{
+    EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
@@ -74,17 +96,21 @@ public class DaftarWarga implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = warga.getNoktp();
+                int id = warga.getIdWarga();
                 if (findWarga(id) == null) {
-                    throw new NonexistentEntityException("Warga dengan nomor KTP  " + id + " tidak terdaftar");
+                    throw new NonexistentEntityException("Warga dengan user id" + " "+ id +" " + " tidak terdaftar .");
                 }
             }
-            throw ex;
+            try {
+                throw ex;
+            } catch (Exception ex1) {
+                Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         } finally {
             if (em != null) {
                 em.close();
             }
-        }
+         }
     }
 
     public void destroy(Integer id) throws NonexistentEntityException, RollbackFailureException, Exception {
@@ -139,15 +165,6 @@ public class DaftarWarga implements Serializable {
         }
     }
 
-    public Warga findWarga(Integer id) {
-        EntityManager em = getEntityManager();
-        try {
-            return em.find(Warga.class, id);
-        } finally {
-            em.close();
-        }
-    }
-
     public int getWargaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -160,5 +177,7 @@ public class DaftarWarga implements Serializable {
             em.close();
         }
     }
+
+   
     
 }
