@@ -15,8 +15,8 @@ public class WargaComparator implements Comparator<Warga> {
 
     @Override
     public int compare(Warga o1, Warga o2) {
-        int kode = o1.getIdWarga().compareTo(o2.getIdWarga());
-        return kode;
+        int id = o1.getNamalengkap().compareTo(o2.getNamalengkap());
+        return id;
     
     //<editor-fold defaultstate="collapsed" desc="comment">
     }
