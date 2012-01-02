@@ -47,13 +47,13 @@ public class Rumah implements Serializable {
     public void setRT(int rt){
         this.rt=rt;
     }
-    public int getRW(){{
+    public int getRW(){
         return rw;
     }
    public void setRW(int rw){
         this.rw=rw;
     }
-    public void setKodekel(String kodeRumah) {
+    public void setKodeRumah(String kodeRumah) {
         this.kodeRumah = kodeRumah;
     }
 
