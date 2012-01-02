@@ -84,12 +84,12 @@ public class ProsesTambahRumah extends HttpServlet {
             } else {
                 rumah.setKodeRumah(kdrumah);
                 rumah.setAlamatRumah(almtrumah);
-                rumah.setRtRumah(rtrumah);
-                rumah.setRwRumah(rwrumah);
-                rumah.setKelurahanRt(kelrumah);
-                rumah.setKecamatanRumah(kecrumah);
-                rumah.setKotaRumah(ktrumah);
-                rumah.setProvinsiRumah(provrumah);
+                rumah.setRT(rtrumah);
+                rumah.setRW(rwrumah);
+                rumah.setKelurahan(kelrumah);
+                rumah.setKecamatan(kecrumah);
+                rumah.setKota(ktrumah);
+                rumah.setPovinsi(provrumah);
                 daftarRumah.tambahRumah(rumah);
                 jsp = "halaman/lihat_rumah.jsp";
             }
