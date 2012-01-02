@@ -84,7 +84,7 @@ public class ProsesEditAkun extends HttpServlet {
                //      "Kesalahan!",JOptionPane.WARNING_MESSAGE);
               //request.setAttribute("keluarga_edit", keluarga);
                //jsp = "halaman/edit_keluarga.jsp";
-          } //validate nmbankpos on database
+          //validate nmbankpos on database
              else {
                 user.setIdAkun(userid);
                 user.setUsername(username);
