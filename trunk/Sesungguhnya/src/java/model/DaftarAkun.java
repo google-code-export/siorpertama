@@ -92,7 +92,7 @@ public class DaftarAkun implements Serializable {
             if (msg == null || msg.length() == 0) {
                 String id = akun.getIdAkun();
                 if (findAkun(id) == null) {
-                    throw new NonexistentEntityException("Warga dengan user id" + " "+ id +" " + " no longer exists.");
+                    throw new NonexistentEntityException("Akun dengan user id" + " "+ id +" " + " no longer exists.");
                 }
             }
             try {
