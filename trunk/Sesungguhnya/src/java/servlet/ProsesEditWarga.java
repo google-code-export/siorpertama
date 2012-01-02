@@ -107,8 +107,6 @@ public class ProsesEditWarga extends HttpServlet {
         } finally {            
             out.close();
         }
-        
-        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -121,7 +119,13 @@ public class ProsesEditWarga extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(ProsesEditAkun.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ProsesEditAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
@@ -134,7 +138,13 @@ public class ProsesEditWarga extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(ProsesEditAkun.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ProsesEditAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
@@ -146,3 +156,4 @@ public class ProsesEditWarga extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
+
