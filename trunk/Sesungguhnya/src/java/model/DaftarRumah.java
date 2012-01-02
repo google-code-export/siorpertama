@@ -111,7 +111,7 @@ public class DaftarRumah implements Serializable {
 
         while (iterator.hasNext()) {
             tes = iterator.next();
-            if (kode.equalsIgnoreCase(tes.getKodeRumah())) {
+            if (kode.equalsIgnoreCase(tes.getKoderum())) {
                 return true;
             }
         } return false;

@@ -15,7 +15,7 @@ public class RumahComparator implements Comparator<Rumah> {
 
     @Override
     public int compare(Rumah o1, Rumah o2) {
-        int kode = o1.getKodeRumah().compareTo(o2.getKodeRumah());
+        int kode = o1.getKoderum().compareTo(o2.getKoderum());
         return kode;
     }
     

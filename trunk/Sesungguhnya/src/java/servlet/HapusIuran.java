@@ -10,12 +10,15 @@ import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import model.DaftarIuran;
+import model.exceptions.NonexistentEntityException;
 
 /**
  *
@@ -32,7 +35,7 @@ public class HapusIuran extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NonexistentEntityException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -47,35 +50,35 @@ public class HapusIuran extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-                        DaftarIuran daftarIuran = new DaftarIuran();
-            int listIuran = daftarIuran.getIuran();
+            DaftarIuran daftarIuran = new DaftarIuran();
+            List<Iuran> listIuran = daftarIuran.getIuran();
             Collections.sort(listIuran, new IuranComparator());
-            String cekKeluarga[] = request.getParameterValues("cek_keluarga");
+            String cekIuran[] = request.getParameterValues("cek_Iuran");
             String jsp = "";
 
-            if (cekKeluarga == null) {
-                JOptionPane.showMessageDialog(null, "Keluarga tidak ada yang dipilih",
+            if (cekIuran == null) {
+                JOptionPane.showMessageDialog(null, "Iuran tidak ada yang dipilih",
                         "Kesalahan!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("list_keluargaindo", listKeluarga);
+                request.setAttribute("list_listIuran", listIuran);
                 jsp = "halaman/keluarga_indos.jsp";
             } else {
                 int j = JOptionPane.showConfirmDialog(null, "apakah anda yakin akan menghapus ?",
                         JOptionPane.MESSAGE_TYPE_PROPERTY, JOptionPane.YES_NO_OPTION);
 
                 if (j == JOptionPane.YES_OPTION) {
-                    for (int i = 0; i < cekKeluarga.length; i++) {
-                        Integer idKel = Integer.parseInt(cekKeluarga[i]);
-                        Keluargaindo keluarga = daftarKeluarga.findBankPos(idKel);
-                        daftarKeluarga.destroy(idKel);
+                    for (int i = 0; i < cekIuran.length; i++) {
+                        Integer idIuran = Integer.parseInt(cekIuran[i]);
+                        Iuran iuran = daftarIuran.findIuran(idIuran);
+                        daftarIuran.destroy(idIuran);
                     }
                 }
-                listKeluarga = daftarKeluarga.getKeluarga();
-                Collections.sort(listKeluarga, new KeluargaindoComparator());
-                request.setAttribute("list_keluargaindo", listKeluarga);
+                listIuran = daftarIuran.getIuran();
+                Collections.sort(listIuran, new IuranComparator());
+                request.setAttribute("list_Iuran", listIuran);
                 jsp = "halaman/keluarga_indos.jsp";
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
-            requestDispatcher.forward(request, response);0
+            requestDispatcher.forward(request, response);
         } finally {            
             out.close();
         }

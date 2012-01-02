@@ -80,7 +80,7 @@ public class ProsesHapusKeluarga extends HttpServlet {
                 jsp = "halaman/keluarga_indos.jsp";
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
-            requestDispatcher.forward(request, response);0
+            requestDispatcher.forward(request, response);
             
         } finally {            
             out.close();

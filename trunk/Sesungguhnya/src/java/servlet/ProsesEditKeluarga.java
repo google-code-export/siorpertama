@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author Lia
  */
-@WebServlet(name = "ProsesEditKeluarga", urlPatterns = {"/proses_tambah_keluarga"})
+@WebServlet(name = "ProsesEditKeluarga", urlPatterns = {"/proses_edit_keluarga"})
 public class ProsesEditKeluarga extends HttpServlet {
 
     /** 
