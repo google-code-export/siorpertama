@@ -5,7 +5,6 @@
 --%>
 <%@page import="model.DaftarKeluargaindo"%>
 <%@page import="entity.Keluargaindo"%>
-<%@page import="javax.swing.JOptionPane"%>
 
 <% Keluargaindo keluarga = (Keluargaindo) request.getAttribute("keluarga_edit");%>
 

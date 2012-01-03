@@ -1,124 +1,162 @@
-<%-- 
-    Document   : rekam_bank_pos
-    Created on : Nov 26, 2011, 7:50:42 AM
-    Author     : AlfieSaHid
---%>
-
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <%String logedUser = (String) session.getAttribute("username");%>
-    <%String roleUser = (String) session.getAttribute("roleuser");%>
-    
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title> Rekam Bank Pos</title>
-        <link href="styles/style2.css" rel="stylesheet" type="text/css" /><!--[if lte IE 7]>
-        <style>
-        .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
-        ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
-        </style>
-        <![endif]-->
-    </head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home of Sior</title>
+<meta name="keywords" content="Free CSS Template, Website Templates, Music Websites" />
+<meta name="description" content="Free CSS Template for Music Websites" />
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"></script>
+<script src="C:\Users\ntonk\Documents\Unnamed Site 2\coba template sior\js\slides.min.jquery.js"></script>
+<script>
+		$(function(){
+			$('#slides').slides({
+				preload: true,
+				preloadImage: 'img/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true
+			});
+		});
+	
+  	   $(function(){
+  		   $("#slides").slides({
+				generateNextPrev: true
+  			});
+		});
+</script>
 
-    <body>
-        <center><div class="header"><img src="images/sederhana.jpg" /></div></center>
+<style type="text/css">
+#templatemo_container #example #slides .slides_container div p {
+	font-size: 36px;
+}
+#apDiv1 {
+	position:absolute;
+	left:453px;
+	top:487px;
+	width:677px;
+	height:300px;
+	z-index:101;
+}
+#apDiv2 {
+	position:absolute;
+	left:454px;
+	top:799px;
+	width:683px;
+	height:79px;
+	z-index:102;
+	text-align: left;
+}
+#apDiv3 {
+	position:absolute;
+	left:429px;
+	top:168px;
+	width:516px;
+	height:177px;
+	z-index:102;
+}
+</style>
+</head>
+<body>
+<span class="content">
+      <h3>&nbsp;</h3>
+      <h3>&nbsp;</h3>
+</span>
 
-        <div class="container">
-            <div class="sidebar1">
-                <% if (roleUser.equals("1")) {%>
-                <p><strong>Dokumen</strong></p> 
-                <ul class="nav">
-                    <li><a href="dipa">DIPA</a></li>
-                </ul>
-                <p><strong>Referensi</strong></p> 
-                <ul class="nav">
-                    <li><a href="satker">Satuan Kerja</a></li>
-                    <li><a href="bank_pos">Bank Pos</a></li>
-                    <li><a href="pejabat">Pejabat</a></li>
-                    <li><a href="program">Program</a></li>
-                    <li><a href="kegiatan">Kegiatan</a></li>
-                    <li><a href="output">Output</a></li>
-                    <li><a href="mata_anggaran">Mata Anggaran</a></li>
-                    <li><a href="lokasi">Lokasi</a></li>
-                </ul>
-                <p><strong>Utilitas</strong></p>
-                <ul class="nav">
-                    <li><a href="register">Registrasi User</a></li>
-                </ul>
-                <% } else if (roleUser.equals("2")) {%>
-                <p><strong>Dokumen</strong></p> 
-                <ul class="nav">
-                    <li><a href="#">Tayang DIPA</a></li>
-                </ul>
-                <p><strong>Pencairan</strong></p> 
-                <ul class="nav">
-                    <li><a href="#">Surat Perintah Membayar</a></li>
-                </ul>
-                <p><strong>Monitoring</strong></p>
-                <ul class="nav">
-                    <li><a href="#">Realisasi</a></li>
-                </ul>
-                <p><strong>Utilitas</strong></p>
-                <ul class="nav">
-                    <li><a href="#">Cetak SPM</a></li>	
-                    <li><a href="#">Submit ke KPPN</a></li>
-                </ul>
-                <% } else if (roleUser.equals("3")) {%>
-                <p><strong>Dokumen</strong></p> 
-                <ul class="nav">
-                    <li><a href="#">Tayang DIPA</a></li>
-                </ul>
-                <p><strong>Penerimaan</strong></p> 
-                <ul class="nav">
-                    <li><a href="#">Notifikasi SPM</a></li>
-                    <li><a href="#">Tolak SPM</a></li>
-                </ul>  
-                <p><strong>Pencairan</strong></p> 
-                <ul class="nav">
-                    <li><a href="#">Proses SP2D</a></li>
-                    <li><a href="#">Batal SP2D</a></li>
-                </ul>
-                <p><strong>Utilitas</strong></p>
-                <ul class="nav">
-                    <li><a href="#">Cetak SP2D</a></li>	
-                </ul>  
-                <% }%>
-                <p></p>
-                <p></p>
-                <p></p>
+<div id="apDiv1">
+  <table width="400px">
+    <tr>
+      <td width="150px">Kode Keluarga</td>
+      <td><input name="kode_keluarga" type="text" style="width: 30px" /></td>
+    </tr>
+    <tr>
+      <td>Kepala Keluarga</td>
+      <td><input type="text" name="kepala_keluarga" style="width: 200px" /></td>
+    </tr>
+    <tr>
+      <td>Anggota Keluarga</td>
+      <td><input type="text" name="anggota_keluarga" style="width: 200px" /></td>
+    </tr>
+  </table>
+</div>
+<div id="apDiv2">
+  <p><span style="margin: 10px;">
+    <input name="Submit5" type="submit" value="&lt;&lt;" formmethod="post" formaction="keluarga/2" />
+    <input name="Submit6" type="submit" value="&gt;&gt;" formmethod="post" formaction="keluarga" />
+  </span>
+    <input type="submit" name="Submit2" value="Simpan" />
+    <a href="javascript:document.form_tambah_keluarga.reset()">
+    <input type="button" name="button" value="Reset" />
+    </a>
+    <input type="button" name="Button" value="  Batal  " />
+  </p>
+</div>
+<div id="templatemo_container">
 
+	<div id="templatemo_header">
+	  <div id="templatemo_login">
+       	  <form method="get" action="#"><input class="inputfield" name="keyword" type="text" id="keyword"/>
+                <input class="button" type="submit" name="Search" value="Cari" />
+          </form>
+      </div>
+  </div>
 
-                <!-- end .sidebar1 --></div>
-            <div class="logout"><a href="logout"><img src="images/logout.png"/></a>
-                <!-- end .logout --></div>
-            <div class="content">
-                <center><p><% if (logedUser != null) {%><%="Anda Login sebagai: " + logedUser%><%}%></p></center>
-                <center><p><h3> Rekam Keluarga</h3></p>
-                    <form name="form_tambah_keluarga" action="proses_tambah_keluarga" method="post" >
-                        <table width="400px">
-                            <tr>
-                                <td width="150px">Kode Keluarga</td>
-				<td><input name="kode_keluarga" type="text" style="width: 30px"> </td>
-                            </tr>
-                            <tr>
-                                <td>Kepala Keluarga</td>
-                                <td><input type="text" name="kepala_keluarga" style="width: 200px"></td>
-                            </tr>
-							<tr>
-                                <td>Anggota Keluarga</td>
-				<td><input type="text" name="anggota_keluarga" style="width: 200px"></td>
-                            </tr>
-                        </table>
-                        <p></p>
-                        <table width="400px"><tr>
-                                <td align="center"><a href="javascript:document.form_tambah_keluarga.reset()"><img src="images/reset.png" border=0 alt="Reset"></a>
-								<input name="Submit" src="images/simpan.png" type="image" value="Simpan"/> </td>
-                            </tr>
-                        </table>
-                    </form>
-                </center>
-                <!-- end .content --></div>
-                <!-- end .container --></div>
-    </body>
+<div id="templatemo_banner">
+  <div></div>
+</div>
+  <div id="example">
+    <div id="apDiv3"><img src="banner sior copy.png" alt="" width="549" height="180" /></div>
+    <div id="templatemo_menu">
+      <ul>
+	          <li><a href="index.html" class="current">Halaman Utama</a></li>
+	          <li><a href="subpage.html">Menu Keuangan</a></li>
+	          <li><a href="subpage.html">Menu Hunian</a></li>
+	          <li><a href="subpage.html">Menu Warga</a></li>
+	          <li><a href="subpage.html">FAQ's</a></li>
+	          <li><a href="subpage.html" class="lastmenu">Keterangan RT / RWt</a></li>
+    </ul>
+  </div>
+    <div id="templatemo_content">
+      <div id="templatemo_left_column">
+        <h2>User</h2>
+	          <div class="left_col_box">
+	            <form method="get" action="#">
+	              <p>Hi, User</p>
+	              <p>
+                  <!-- #BeginDate format:fcAm1a -->Tuesday, January 3, 2012 11:21 AM<!-- #EndDate --></p>
+	              <p>
+	                <input class="button" type="submit" name="Submit" value="Logoff" />
+                  </p>
+                </form>
+              </div>
+	          <h2>Data Updated</h2>
+	          <div class="left_col_box">
+	            <div class="blog_box">
+	              <h3><a href="#">Gaji Tukang Sampah periode 1</a></h3>
+	              .<br />
+	              Posted by <a href="#"><span>Admin</span></a> in <a href="#"><span>Menu Keuangan</span></a><br />
+	              14 Januari 2012</div>
+	            <div class="blog_box">
+	              <h3><a href="#">Pembayaran Iuran </a></h3>
+	              .<br />
+	              Posted by <a href="#"><span>Admin</span></a> in <a href="#"><span>Menu Keuangan</span></a><br />
+	              4 Januari 2012</div>
+	            <div class="blog_box">
+	              <h3><a href="#">Donec mollis aliquet ligula</a></h3>
+	              Suspendisse vitae neque eget ante tristique vestibulum.<br />
+	              Posted by <a href="#"><span>Admin</span></a> in <a href="#"><span>Samples</span></a><br />
+	              1 Januari 2012</div>
+	            <div class="more_button"><a href="#">View All</a></div>
+              </div>
+      </div>
+      <h3>Warga &gt;&gt; Keluarga &gt;&gt; Tambah Keluarga</h3>
+<p>&nbsp;</p>
+    </div>
+	      <!--  Designed by w w w . t e m p l a t e m o . c o m  -->
+	      <div id="templatemo_footer"><br />
+    Copyright © 2012<strong> SIOR(Sistem Administrasi Online RT/RW)</strong>| <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">CSS Templates</a> </div>
+</div>
+</div>
+</div></body>
 </html>

@@ -68,9 +68,9 @@
                             <span style="margin: 10px;">
                             </span>
                             <p style="margin: 10px;"><BR>
-                                    <input name="Submit" type="submit" value="tambah" formmethod="post" formaction="tambah_keluarga" />
-                                    <input name="Submit" type="submit" value="edit" formmethod="post" formaction="edit_keluarga" />
-                                    <input name="Submit" type="submit" value="hapus" formmethod="post" formaction="hapus_keluarga" />
+                                    <a href="tambah_keluarga"><input name="button1" type="button" value="tambah"/></a>
+                                    <a href="edit_keluargaindo"><input name="button2" type="button" value="edit"/></a>
+                                    <a href="hapus_keluarga"><input name="button3" type="button" value="hapus"/></a>
                                     </form></center>                                    
             <!-- end .content --></div>
         <!-- end .container --></div>
