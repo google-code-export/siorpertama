@@ -33,10 +33,10 @@
 }
 #apDiv1 {
 	position:absolute;
-	left:475px;
-	top:436px;
+	left:474px;
+	top:427px;
 	width:617px;
-	height:229px;
+	height:384px;
 	z-index:101;
 }
 #apDiv1 p {
@@ -55,10 +55,65 @@
 <body>
 
 <div id="apDiv1">
-    <p align="center"><label align="center"><font color="red"><b>${error}</b></font></label></p>
-    <p>SELAMAT DATANG DI SIOR!!</p>
-  <h3>SiOR (Sistem Administrasi Online RT/RW -- Aplikasi Pengelolaan Hunian RT/RW)
-    SiOR merupakan salah satu aplikasi ciptaan mahasiswa ITS Surabaya. Aplikasi SiOR ini memiliki fungsi dalam mengelola data-data penting dalam lingkungan RT/RW, khususnya berhubungan dengan warga penghuni RT/RW tertentu. Oleh karena itu, aplikasi ini membantu pengurus RT/RW dalam menata dan menyimpan data hunian, warga yang tinggal di wilayah RT/RW-nya </h3>
+  <p>Informasi Akun</p>
+  <table width="532" border="0">
+    <tr>
+      <td>Email</td>
+      <td width="10" align="center"> : </td>
+      <td width="378"><input name="email" type="text" disabled="disabled" size="50px" /></td>
+    </tr>
+    <tr>
+      <td>Username</td>
+      <td align="center"> : </td>
+      <td><input name="username" type="text" disabled="disabled" size="50px" /></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td align="center"> : </td>
+      <td><input name="password2" type="password" size="50px" /></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p>Informasi RT / RW</p>
+  <table width="530" border="0">
+    
+    <tr>
+      <td></td>
+      <td>RT Akun</td>
+      <td width="13" align="center"> : </td>
+      <td width="128"><input name="rtakun" type="text" id="rtakun" size="10px" /></td>
+      <td width="10"></td>
+      <td width="78">RW Akun</td>
+      <td width="12" align="center"> : </td>
+      <td width="133"><input name="rwakun" type="text" id="rwakun" size="10px" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Kelurahan</td>
+      <td align="center"> : </td>
+      <td><input name="kelurahanakun" type="text" id="kelurahanakun" size="20px" /></td>
+      <td></td>
+      <td>Kecamatan</td>
+      <td align="center"> : </td>
+      <td><input name="kecamatanakun" type="text" id="kecamatanakun" size="20px" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Kota</td>
+      <td align="center"> : </td>
+      <td><input name="kotaakun" type="text" id="kotaakun" size="20px" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Jumlah Rumah</td>
+      <td align="center"> : </td>
+      <td><input name="jumlahrumah" type="text" id="jumlahrumah" size="10px" /></td>
+    </tr>
+  </table>
+  <p>
+    <input name="simpan" type="submit" value="Simpan" />
+    <input name="simpan2" type="submit" value="Edit" />
+  </p>
 </div>
 <div id="apDiv2"><img src="banner sior copy.png" width="549" height="180" /></div>
 <div id="templatemo_container">
@@ -86,18 +141,18 @@
   </div>
 	      <div id="templatemo_content">
 	        <div id="templatemo_left_column">
-	          <h2>Login</h2>
+	          <h2>User</h2>
 	          <div class="left_col_box">
-	             <p>${error}</p>
-        <form method="POST" action="administrator?page=login">
-            <fieldset>
-                <p>Username : <input type="text" name="username" /></p>
-                <p>Password : <input type="text" name="password"/></p>
-                <p><input type="Submit" value="Log In" /></p>
-                <p><input type="Submit" value="Register" /></p>
-            </fieldset>
-        </form>
-              </div>
+	            <form method="get" action="#">
+	              <p>Hi, User</p>
+	              <p>
+	                <!-- #BeginDate format:fcAm1a -->Wednesday, January 4, 2012 11:20 PM<!-- #EndDate -->
+                  </p>
+	              <p>
+	                <input class="button" type="submit" name="Submit" value="Logoff" />
+                  </p>
+                </form>
+	          </div>
 	          <h2>Data Updated</h2>
 	          <div class="left_col_box">
 	            <div class="blog_box">
@@ -119,5 +174,5 @@
     <div id="templatemo_footer">	        Copyright © 2012<strong> SIOR(Sistem Administrasi Online RT/RW)</strong>| <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">CSS Templates</a> </div>
 </div>
 </div>
-</body>
+</div></body>
 </html>
