@@ -4,12 +4,9 @@
  */
 package servlet;
 
-import comparator.AkunComparator;
 import entity.Akun;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DaftarAkun;
 
-@WebServlet(name = "ProsesRegister", urlPatterns = {"/proses_register"})
-public class ProsesRegister extends HttpServlet {
+/**
+ *
+ * @author acer
+ */
+@WebServlet(name = "prosesdaftarakun", urlPatterns = {"/prosesdaftarakun"})
+public class prosesdaftarakun extends HttpServlet {
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -33,25 +37,20 @@ public class ProsesRegister extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        try {
-            
-        DaftarAkun daftar = new DaftarAkun();
-        Akun akun = new Akun();
-        String jsp ="";
-        
-        String email = request.getParameter("email");
+     String email = request.getParameter("email");
         String password = request.getParameter("password");
         String ulangPassword = request.getParameter("ulangpassword");
-	String username = request.getParameter("username");
-	String rtakun = request.getParameter("rt_akun");
-	String rwakun = request.getParameter("rw_akun");
-	String kelurahanakun = request.getParameter("kelurahan_akun");
-        String kecamatanakun = request.getParameter("kecamatan_akun");
-	String kotaakun = request.getParameter("kota_akun");
-	String jumlahrumah = request.getParameter("jumlah_rumah");
-	
-       
+		String username = request.getParameter("username");
+		String rtakun = request.getParameter("rt_akun");
+		String rwakun = request.getParameter("rw_akun");
+		String kelurahanakun = request.getParameter("kelurahan_akun");
+		String kecamatanakun = request.getParameter("kecamatan_akun");
+		String kotaakun = request.getParameter("kota_akun");
+		String jumlahrumah = request.getParameter("jumlah_rumah");
+		
+        DaftarAkun daftar = new DaftarAkun();
+        Akun akun = new Akun();
+
 
         //validasi masukan
         if (email.isEmpty() || password.isEmpty() || ulangPassword.isEmpty()) {//validasi isian masukan (kosong/tidak)
@@ -86,7 +85,11 @@ public class ProsesRegister extends HttpServlet {
 
         } */
             else { //jika tidak ada error, menambah record akun
-                              
+            
+            int rtakuni = Integer.parseInt(rtakun);
+            int rwakuni = Integer.parseInt(rwakun);
+            int jumlahrumahi = Integer.parseInt(jumlahrumah);
+            
             akun.setEmail(email);
             akun.setPassword(password);
             akun.setUsername(username);
@@ -94,24 +97,27 @@ public class ProsesRegister extends HttpServlet {
             akun.setRwakun(rwakun);
             akun.setKelurahanakun(kelurahanakun);
             akun.setKecamatanakun(kecamatanakun);
-            akun.setKotaakun(kotaakun);
             akun.setJumlahrumah(jumlahrumah);
-            daftar.addAkun(akun); 
-            jsp = "registerprofil.jsp";
+            daftar.addAkun(akun);
+
+          /*  HttpSession session = request.getSession(true);//setelah registrasi berhasil, langsung login
+            session.setAttribute("idAkun", akun.getId());
+            session.setAttribute("loged", akun);
+            session.setAttribute("username", akun.getEmail() + '/' + akun.getUsername());*/
+
         }
-            List<Akun> listAkun = daftar.getAkuns();
-            Collections.sort(listAkun, new AkunComparator());
-            request.setAttribute("list_akun", listAkun);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
-            requestDispatcher.forward(request, response);
-       } finally {
+        try {
+            response.sendRedirect("home");
+        } finally {
             out.close();
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -123,8 +129,10 @@ public class ProsesRegister extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -136,8 +144,9 @@ public class ProsesRegister extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

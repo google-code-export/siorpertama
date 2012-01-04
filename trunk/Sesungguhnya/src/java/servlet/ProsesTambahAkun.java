@@ -4,9 +4,9 @@
  */
 package servlet;
 
-import comparator.KeluargaindoComparator;
-import entity.Keluargaindo;
-import model.DaftarKeluargaindo;
+import comparator.AkunComparator;
+import entity.Akun;
+import model.DaftarAkun;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -17,14 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Lia
  */
-@WebServlet(name = "ProsesTambahKeluargaindo", urlPatterns = {"/proses_tambah_akun"})
-public class ProsesTambahKeluargaindo extends HttpServlet {
+@WebServlet(name = "ProsesTambahAkun", urlPatterns = {"/proses_tambah_akun"})
+public class ProsesTambahAkun extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -49,41 +49,59 @@ public class ProsesTambahKeluargaindo extends HttpServlet {
             out.println("</html>");
              */
             
-            Keluargaindo keluarga = new Keluargaindo();
-            DaftarKeluargaindo daftarKeluargaindo = new DaftarKeluargaindo();
+            Akun akun = new Akun();
+            DaftarAkun daftarAkun = new DaftarAkun();
             String jsp = "";
 
-        String kodekel = request.getParameter("kode_keluarga");
-        String kepkel = request.getParameter("kepala_keluarga");
-        String agtkel1 = request.getParameter("anggota_keluarga");
-
-        int agtkel = Integer.parseInt(agtkel1);
+String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String ulangPassword = request.getParameter("ulangpassword");
+	String username = request.getParameter("username");
+	String rtakun = request.getParameter("rt_akun");
+	String rwakun = request.getParameter("rw_akun");
+	String kelurahanakun = request.getParameter("kelurahan_akun");
+        String kecamatanakun = request.getParameter("kecamatan_akun");
+	String kotaakun = request.getParameter("kota_akun");
+	String jumlahrumah = request.getParameter("jumlah_rumah");
         
             //validate blank field
-         if (kodekel.isEmpty() || kepkel.isEmpty() || agtkel1.isEmpty()) {//validasi isian masukan (kosong/tidak)
+            if (email.isEmpty() || password.isEmpty() || ulangPassword.isEmpty()) {//validasi isian masukan (kosong/tidak)
             request.setAttribute("error", "Mohon isi form dengan lengkap !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+            RequestDispatcher rdp = request.getRequestDispatcher("register");
             rdp.forward(request, response);
 
-        } else if (kodekel.equalsIgnoreCase("000000")) { 
-            request.setAttribute("error", "Kode Keluarga Tida Boleh Bernilai 00000 !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+        } else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {//validasi format email
+            request.setAttribute("error", "Mohon isi form dengan lengkap !");
+            RequestDispatcher rdp = request.getRequestDispatcher("register");
             rdp.forward(request, response);
-        } else if (daftarKeluargaindo.isKodeExist(kodekel)) {
-            request.setAttribute("error", "Kode keluarga telah terpakai !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+
+        } else if (password.length() < 8) { //validasi panjang password
+            request.setAttribute("error", "Panjang password minimal 8 karakter");
+            RequestDispatcher rdp = request.getRequestDispatcher("register");
             rdp.forward(request, response);
-        }else {
-                keluarga.setKodekel(kodekel);
-                keluarga.setKeplakel(kepkel);
-                keluarga.setAnggotakel(agtkel);
-                daftarKeluargaindo.tambahKeluarga(keluarga);
-                jsp = "halaman/keluarga_indos.jsp";
+
+        } else if (!password.equals(ulangPassword)) {//validasi password dan konfirm password (sama/tidak)
+            request.setAttribute("error", "Password dan konfirmasi password yang dimasukkan tidak sama");
+            RequestDispatcher rdp = request.getRequestDispatcher("register");
+            rdp.forward(request, response);
+
+            } else {
+                akun.setEmail(email);
+                akun.setUsername(username);
+                akun.setPassword(password);
+                akun.setRtakun(rtakun);
+                akun.setRwakun(rwakun);
+                akun.setKelurahanakun(kelurahanakun);
+                akun.setKecamatanakun(kecamatanakun);
+                akun.setKotaakun(kotaakun);
+                akun.setJumlahrumah(jumlahrumah);
+                daftarAkun.addAkun(akun);               
+                jsp = "registerberhasil.jsp";
             }
 
-            List<Keluargaindo> listKeluarga = daftarKeluargaindo.getKeluarga();
-            Collections.sort(listKeluarga, new KeluargaindoComparator());
-            request.setAttribute("list_keluargaindo", listKeluarga);
+            //List<Keluargaindo> listKeluarga = daftarKeluarga.getKeluarga();
+            //Collections.sort(listKeluarga, new KeluargaindoComparator());
+            //request.setAttribute("list_keluargaindo", listKeluarga);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
 

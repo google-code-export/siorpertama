@@ -4,9 +4,9 @@
  */
 package servlet;
 
-import comparator.KeluargaindoComparator;
-import entity.Keluargaindo;
-import model.DaftarKeluargaindo;
+import comparator.HunianComparator;
+import entity.Hunian;
+import model.DaftarHunian;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author Lia
  */
-@WebServlet(name = "ProsesTambahKeluargaindo", urlPatterns = {"/proses_tambah_akun"})
-public class ProsesTambahKeluargaindo extends HttpServlet {
+@WebServlet(name = "ProsesTambahHunian", urlPatterns = {"/proses_tambah_hunian"})
+public class ProsesTambahHunian extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,49 +40,62 @@ public class ProsesTambahKeluargaindo extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProsesTambahKeluargaindo</title>");  
+            out.println("<title>Servlet ProsesTambahHunian</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProsesTambahKeluargaindo at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProsesTambahHunian at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
             
-            Keluargaindo keluarga = new Keluargaindo();
-            DaftarKeluargaindo daftarKeluargaindo = new DaftarKeluargaindo();
+            Hunian hunian = new Hunian();
+            DaftarHunian daftarHunian = new DaftarHunian();
             String jsp = "";
 
-        String kodekel = request.getParameter("kode_keluarga");
-        String kepkel = request.getParameter("kepala_keluarga");
-        String agtkel1 = request.getParameter("anggota_keluarga");
-
-        int agtkel = Integer.parseInt(agtkel1);
-        
-            //validate blank field
-         if (kodekel.isEmpty() || kepkel.isEmpty() || agtkel1.isEmpty()) {//validasi isian masukan (kosong/tidak)
-            request.setAttribute("error", "Mohon isi form dengan lengkap !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+            String kodehunian = request.getParameter("kode_hunian");
+            String kodewarga = request.getParameter("kode_warga");
+            String koderumah = request.getParameter("kode_rumah");
+            String tanggalmasuk = request.getParameter("tanggal_masuk");
+            String tanggalkeluar = request.getParameter("tanggal_keluar");
+         
+            int noktp = Integer.parseInt(kodewarga);
+            
+            if (kodehunian.isEmpty() || kodewarga.isEmpty() || koderumah.isEmpty()
+                    || tanggalmasuk.isEmpty() || tanggalkeluar.isEmpty()) {//validasi isian masukan (kosong/tidak)
+            request.setAttribute("errorhunian", "Mohon isi form dengan lengkap !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_hunian");
             rdp.forward(request, response);
 
-        } else if (kodekel.equalsIgnoreCase("000000")) { 
-            request.setAttribute("error", "Kode Keluarga Tida Boleh Bernilai 00000 !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+        } else if (kodehunian.equalsIgnoreCase("000000")) { 
+            request.setAttribute("errorhunian", "Kode Hunian Tidak Boleh Bernilai 00000 !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_hunian");
             rdp.forward(request, response);
-        } else if (daftarKeluargaindo.isKodeExist(kodekel)) {
-            request.setAttribute("error", "Kode keluarga telah terpakai !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+        } else if (kodewarga.equalsIgnoreCase("000000")) { 
+            request.setAttribute("errorhunian", "Kode Warga Tidak Boleh Bernilai 00000 !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_hunian");
+            rdp.forward(request, response);
+        } else if (koderumah.equalsIgnoreCase("000000")) { 
+            request.setAttribute("errorhunian", "Kode Rumah Tidak Boleh Bernilai 00000 !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_hunian");
+            rdp.forward(request, response);
+        } else if (daftarHunian.isKodeExist(kodehunian)) {
+            request.setAttribute("errorhunian", "Kode hunian telah terpakai !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_hunian");
             rdp.forward(request, response);
         }else {
-                keluarga.setKodekel(kodekel);
-                keluarga.setKeplakel(kepkel);
-                keluarga.setAnggotakel(agtkel);
-                daftarKeluargaindo.tambahKeluarga(keluarga);
-                jsp = "halaman/keluarga_indos.jsp";
+                hunian.setKodehunian(kodehunian);
+                hunian.setKoderumah(koderumah);
+                hunian.setNoktp(noktp);
+                hunian.setTanggalmasuk(null);
+                hunian.setTanggalkeluar(null);
+                daftarHunian.tambahHunian(hunian);
+                
+                jsp = "halaman/hunian.jsp";
             }
 
-            List<Keluargaindo> listKeluarga = daftarKeluargaindo.getKeluarga();
-            Collections.sort(listKeluarga, new KeluargaindoComparator());
-            request.setAttribute("list_keluargaindo", listKeluarga);
+            List<Hunian> listHunian = daftarHunian.getHunian();
+            Collections.sort(listHunian, new HunianComparator());
+            request.setAttribute("list_hunian", listHunian);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
 

@@ -41,7 +41,7 @@ public class Register extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-            String jsp = "register.jsp";
+            String jsp = "halaman/register.jsp";
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
             

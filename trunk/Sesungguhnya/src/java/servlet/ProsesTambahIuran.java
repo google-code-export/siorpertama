@@ -4,9 +4,9 @@
  */
 package servlet;
 
-import comparator.KeluargaindoComparator;
-import entity.Keluargaindo;
-import model.DaftarKeluargaindo;
+import entity.Iuran;
+import model.DaftarIuran;
+import comparator.IuranComparator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author Lia
  */
-@WebServlet(name = "ProsesTambahKeluargaindo", urlPatterns = {"/proses_tambah_akun"})
-public class ProsesTambahKeluargaindo extends HttpServlet {
+@WebServlet(name = "ProsesTambahIuran", urlPatterns = {"/proses_tambah_iuran"})
+public class ProsesTambahIuran extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,49 +40,57 @@ public class ProsesTambahKeluargaindo extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProsesTambahKeluargaindo</title>");  
+            out.println("<title>Servlet ProsesTambahIuran</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProsesTambahKeluargaindo at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProsesTambahIuran at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
             
-            Keluargaindo keluarga = new Keluargaindo();
-            DaftarKeluargaindo daftarKeluargaindo = new DaftarKeluargaindo();
+            Iuran iuran = new Iuran();
+            DaftarIuran daftarIuran = new DaftarIuran();
             String jsp = "";
-
-        String kodekel = request.getParameter("kode_keluarga");
-        String kepkel = request.getParameter("kepala_keluarga");
-        String agtkel1 = request.getParameter("anggota_keluarga");
-
-        int agtkel = Integer.parseInt(agtkel1);
-        
-            //validate blank field
-         if (kodekel.isEmpty() || kepkel.isEmpty() || agtkel1.isEmpty()) {//validasi isian masukan (kosong/tidak)
-            request.setAttribute("error", "Mohon isi form dengan lengkap !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+          
+            String kodeiuran = request.getParameter("kode_iuran");
+            String kodekeluarga = request.getParameter("kode_keluarga");
+            String jenisiuran = request.getParameter("jenis_iuran");
+            String bulaniuran = request.getParameter("bulan_iuran");
+            String jumlahiuran = request.getParameter("jumlah_iuran");
+            String pembayar = request.getParameter("pembayar");
+            String tanggalbayar = request.getParameter("tanggal_bayar");
+            
+            int jumlahbayar = Integer.parseInt(jumlahiuran);
+          
+            if (kodeiuran.isEmpty() || kodekeluarga.isEmpty() || jenisiuran.isEmpty()
+                    || bulaniuran.isEmpty() || jumlahiuran.isEmpty() || pembayar.isEmpty()
+                    || tanggalbayar.isEmpty()) {//validasi isian masukan (kosong/tidak)
+            request.setAttribute("erroriuran", "Mohon isi form dengan lengkap !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_iuran");
             rdp.forward(request, response);
 
-        } else if (kodekel.equalsIgnoreCase("000000")) { 
-            request.setAttribute("error", "Kode Keluarga Tida Boleh Bernilai 00000 !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+        } else if (kodeiuran.equalsIgnoreCase("000000")) { 
+            request.setAttribute("erroriuran", "Kode Iuran Tidak Boleh Bernilai 00000 !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_iuran");
             rdp.forward(request, response);
-        } else if (daftarKeluargaindo.isKodeExist(kodekel)) {
-            request.setAttribute("error", "Kode keluarga telah terpakai !");
-            RequestDispatcher rdp = request.getRequestDispatcher("tambah_keluarga");
+        } else if (daftarIuran.isKodeExist(kodeiuran)) {
+            request.setAttribute("erroriuran", "Kode keluarga telah terpakai !");
+            RequestDispatcher rdp = request.getRequestDispatcher("tambah_iuran");
             rdp.forward(request, response);
         }else {
-                keluarga.setKodekel(kodekel);
-                keluarga.setKeplakel(kepkel);
-                keluarga.setAnggotakel(agtkel);
-                daftarKeluargaindo.tambahKeluarga(keluarga);
-                jsp = "halaman/keluarga_indos.jsp";
+                iuran.setKodeiuran(kodeiuran);
+                iuran.setKodekeluarga(kodekeluarga);
+                iuran.setJenisiuran(jenisiuran);
+                iuran.setJumlahbayar(jumlahbayar);
+                iuran.setBulaniuran(bulaniuran);
+                iuran.setTanggalbayar(null);
+                daftarIuran.tambahIuran(iuran);
+                jsp = "halaman/iuran.jsp";
             }
 
-            List<Keluargaindo> listKeluarga = daftarKeluargaindo.getKeluarga();
-            Collections.sort(listKeluarga, new KeluargaindoComparator());
-            request.setAttribute("list_keluargaindo", listKeluarga);
+            List<Iuran> listIuran = daftarIuran.getIuran();
+            Collections.sort(listIuran, new IuranComparator());
+            request.setAttribute("list_iuran", listIuran);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
 

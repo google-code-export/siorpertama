@@ -28,7 +28,7 @@ public class HomePage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            RequestDispatcher rdp = request.getRequestDispatcher("home.jsp");
+            RequestDispatcher rdp = request.getRequestDispatcher("halaman/home.jsp");
             rdp.forward(request, response);
        
         } finally {
