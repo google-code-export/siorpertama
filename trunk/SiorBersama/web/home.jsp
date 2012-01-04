@@ -33,14 +33,14 @@
 }
 #apDiv1 {
 	position:absolute;
-	left:462px;
-	top:439px;
+	left:475px;
+	top:436px;
 	width:617px;
-	height:384px;
+	height:229px;
 	z-index:101;
 }
 #apDiv1 p {
-	font-size: large;
+	font-size: 36px;
 }
 #apDiv2 {
 	position:absolute;
@@ -55,67 +55,10 @@
 <body>
 
 <div id="apDiv1">
-  <p>Informasi Akun</p>
-  <table width="628" border="0">
-    <tr>
-      <td width="108">Email</td>
-      <td width="9" align="center"> : </td>
-      <td width="252"><input name="email" type="text" size="40px" /></td>
-    </tr>
-    <tr>
-      <td>Username</td>
-      <td align="center"> : </td>
-      <td><input name="username" type="text" size="40px" /></td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td align="center"> : </td>
-      <td><input name="password2" type="password" size="40px" /></td>
-      <td width="241"> *panjang password minimal 8 karakter </td>
-    </tr>
-    <tr>
-      <td>Ulangi Password</td>
-      <td align="center"> : </td>
-      <td><input name="ulangpassword" type="password" size="40px" /></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p>Informasi RT / RW</p>
-  <table width="500" border="0">
-    <tr>
-      <td>RT Akun</td>
-      <td align="center"> : </td>
-      <td><input name="rt_akun" type="text" size="10px" /></td>
-      <td></td>
-      <td>RW Akun</td>
-      <td align="center"> : </td>
-      <td><input name="rw_akun" type="text" size="10px" /></td>
-    </tr>
-    <tr>
-      <td>Kelurahan</td>
-      <td align="center"> : </td>
-      <td><input name="kelurahan_akun" type="text" size="20px" /></td>
-      <td></td>
-      <td>Kecamatan</td>
-      <td align="center"> : </td>
-      <td><input name="kecamatan_akun" type="text" size="20px" /></td>
-    </tr>
-    <tr>
-      <td>Kota</td>
-      <td align="center"> : </td>
-      <td><input name="kota_akun" type="text" size="20px" /></td>
-    </tr>
-    <tr>
-      <td>Jumlah Rumah</td>
-      <td align="center"> : </td>
-      <td><input name="jumlah_rumah" type="text" size="10px" /></td>
-    </tr>
-  </table>
-  <p>&nbsp;</p>
-  <p>
-    <input name="simpan" type="submit" value="Register" />
-    <input name="simpan2" type="submit" value="Reset" />
-  </p>
+    <p align="center"><label align="center"><font color="red"><b>${error}</b></font></label></p>
+    <p>SELAMAT DATANG DI SIOR!!</p>
+  <h3>SiOR (Sistem Administrasi Online RT/RW -- Aplikasi Pengelolaan Hunian RT/RW)
+    SiOR merupakan salah satu aplikasi ciptaan mahasiswa ITS Surabaya. Aplikasi SiOR ini memiliki fungsi dalam mengelola data-data penting dalam lingkungan RT/RW, khususnya berhubungan dengan warga penghuni RT/RW tertentu. Oleh karena itu, aplikasi ini membantu pengurus RT/RW dalam menata dan menyimpan data hunian, warga yang tinggal di wilayah RT/RW-nya </h3>
 </div>
 <div id="apDiv2"><img src="banner sior copy.png" width="549" height="180" /></div>
 <div id="templatemo_container">
@@ -125,7 +68,7 @@
        	  <form method="get" action="#"><input class="inputfield" name="keyword" type="text" id="keyword"/>
                 <input class="button" type="submit" name="Search" value="Cari" />
           </form>
-      </div>
+        </div>
   </div>
 
 <div id="templatemo_banner"></div>
@@ -143,23 +86,18 @@
   </div>
 	      <div id="templatemo_content">
 	        <div id="templatemo_left_column">
-	          <h2>User</h2>
+	          <h2>Login</h2>
 	          <div class="left_col_box">
-	            <form method="get" action="#">
-	              <div class="form_row">
-	                <label>Username</label>
-	                <input class="inputfield" name="email_address" type="text" id="email_addremss"/>
-                  </div>
-	              <div class="form_row">
-	                <label>Password</label>
-	                <input class="inputfield" name="password" type="password" id="password"/>
-                  </div>
-	              <p>
-	                <input type="submit" name="Login" id="Login" value="Login" />
-	                <input type="submit" name="SignUp" id="SignUp" value="Register"/>
-                  </p>
-                </form>
-	          </div>
+	             <p>${error}</p>
+        <form method="POST" action="administrator?page=login">
+            <fieldset>
+                <p>Username : <input type="text" name="username" /></p>
+                <p>Password : <input type="text" name="password"/></p>
+                <p><input type="Submit" value="Log In" /></p>
+                <p><input type="Submit" value="Register" /></p>
+            </fieldset>
+        </form>
+              </div>
 	          <h2>Data Updated</h2>
 	          <div class="left_col_box">
 	            <div class="blog_box">
@@ -175,11 +113,11 @@
 	            <div class="more_button"><a href="#">View All</a></div>
               </div>
             </div>
-           <h3> Pendaftaran Akun SIOR</h3>
+           
 </div>
 	      <!--  Designed by w w w . t e m p l a t e m o . c o m  -->
     <div id="templatemo_footer">	        Copyright © 2012<strong> SIOR(Sistem Administrasi Online RT/RW)</strong>| <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">CSS Templates</a> </div>
 </div>
 </div>
-</div></body>
+</body>
 </html>
