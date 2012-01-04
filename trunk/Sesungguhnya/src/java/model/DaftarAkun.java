@@ -29,22 +29,21 @@ import model.exceptions.RollbackFailureException;
 public class DaftarAkun implements Serializable {
 
     public DaftarAkun() {
-       emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
-       
+        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU"); //SesungguhnyaPU >> dilihat i persistence.xml
     }
+    
     private EntityManagerFactory emf = null;
-    private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    public List<Akun> getUsername() {
+
+    public List<Akun> getAkun() {
         List<Akun> akun = new ArrayList<Akun>();
 
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT a FROM warga AS a");
+            Query q = em.createQuery("SELECT a FROM Keluargaindo AS a");
             akun = q.getResultList();
 
         } finally {
@@ -52,7 +51,7 @@ public class DaftarAkun implements Serializable {
         }
         return akun;
     }
-    
+
     public Akun findAkun(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -61,7 +60,8 @@ public class DaftarAkun implements Serializable {
             em.close();
         }
     }
-    public void tambahAkun(Akun akun) {
+    
+    public void tambahKeluarga(Akun akun) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -75,111 +75,69 @@ public class DaftarAkun implements Serializable {
         }
     }
 
-    public void editAkun(Akun akun) throws RollbackFailureException, NonexistentEntityException{
-    EntityManager em = null;
+    public void edit(Akun akun) {
+        EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             akun = em.merge(akun);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                String id = akun.getIdAkun();
-                if (findAkun(id) == null) {
-                    throw new NonexistentEntityException("Akun dengan user id" + " "+ id +" " + " no longer exists.");
-                }
-            }
-            try {
-                throw ex;
-            } catch (Exception ex1) {
-                Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
             }
-         }
+        }
     }
 
-    public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             Akun akun;
             try {
                 akun = em.getReference(Akun.class, id);
-                akun.getIdAkun();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The akun with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("Keluarga belum dipilih.", enfe);
             }
             em.remove(akun);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
             }
         }
     }
+    
+    public boolean isKodeExist(String kode) {
+        DaftarAkun daftarAkun = new DaftarAkun();
+        List<Akun> listAkun = daftarAkun.getAkun();
+        Iterator<Akun> iterator = listAkun.iterator();
+        Akun tes = new Akun();
 
-    public List<Akun> findAkunEntities() {
-        return findAkunEntities(true, -1, -1);
-    }
-
-    public List<Akun> findAkunEntities(int maxResults, int firstResult) {
-        return findAkunEntities(false, maxResults, firstResult);
-    }
-
-    private List<Akun> findAkunEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Akun.class));
-            Query q = em.createQuery(cq);
-            if (!all) {
-                q.setMaxResults(maxResults);
-                q.setFirstResult(firstResult);
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (kode.equalsIgnoreCase(tes.getIdAkun())) {
+                return true;
             }
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
+        } return false;
+    }
+    
+    public boolean isNamaExist(String nama) {
+        DaftarAkun daftarAkun = new DaftarAkun();
+        List<Akun> listAkun = daftarAkun.getAkun();
+        Iterator<Akun> iterator = listAkun.iterator();
+        Akun tes = new Akun();
+        
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (nama.equalsIgnoreCase(tes.getUsername())) {
+                return true;
+            }
+        } return false;
     }
 
-    public Akun findAkun(String id) {
-        EntityManager em = getEntityManager();
-        try {
-            return em.find(Akun.class, id);
-        } finally {
-            em.close();
-        }
-    }
-
-    public int getAkunCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Akun> rt = cq.from(Akun.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
+    
 
     
     

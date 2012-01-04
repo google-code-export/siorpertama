@@ -74,33 +74,20 @@ public class DaftarHunian implements Serializable {
         }
     }
 
-    public void editHunian(Hunian hunian) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void editHunian(Hunian hunian) {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             hunian = em.merge(hunian);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                String id = hunian.getKodehunian();
-                if (findHunian(id) == null) {
-                    throw new NonexistentEntityException("The hunian with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
             }
         }
     }
+
 
     public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;

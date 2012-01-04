@@ -42,6 +42,7 @@ public class DaftarWarga implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+  
     
     public List<Warga> getIdWarga() {
         List<Warga> warga = new ArrayList<Warga>();

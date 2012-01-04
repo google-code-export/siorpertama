@@ -31,9 +31,7 @@ public class DaftarIuran {
         return emf.createEntityManager();
     }
 
-    /**
-     * @return the jumlahPesan
-     */
+    
     public List<Iuran> getIuran() {
     
         List<Iuran> iuran = new ArrayList<Iuran>();
@@ -49,7 +47,28 @@ public class DaftarIuran {
         return iuran;
     
     }
-
+    public Iuran findIuran(String kodeiuran) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Iuran.class, kodeiuran);
+        } finally {
+            em.close();
+        }
+    }
+    
+ public void editIuran(Iuran iuran) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            iuran = em.merge(iuran);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
     public List<Iuran> seluruhDaftarIuran () {
         List<Iuran> iuran = null;
         EntityManager em = null;
