@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home of Sior</title>
-<meta name="keywords" content="Free CSS Template, Website Templates, Music Websites" />
 <meta name="description" content="Free CSS Template for Music Websites" />
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
@@ -153,9 +152,9 @@
       <h3>Warga &gt;&gt; Keluarga &gt;&gt; Daftar Keluarga</h3>
 <p>&nbsp;</p>
     </div>
-	      <!--  Designed by w w w . t e m p l a t e m o . c o m  -->
+	      
 	      <div id="templatemo_footer">    Copyright © 2012<strong> SIOR(Sistem Administrasi Online RT/RW)</strong>| <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">CSS Templates</a> </div>
 </div>
 </div>
-</div></body>
+</body>
 </html>

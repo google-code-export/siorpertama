@@ -164,5 +164,5 @@
 	      <div id="templatemo_footer">    Copyright © 2012<strong> SIOR(Sistem Administrasi Online RT/RW)</strong>| <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">CSS Templates</a> </div>
 </div>
 </div>
-</div></body>
+</body>
 </html>

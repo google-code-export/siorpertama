@@ -83,8 +83,8 @@
   <p>&nbsp;</p>
   <div align="center">
     <input type="submit" name="Submit" value="Simpan" />
-    <a href="javascript:document.form_tambah_rumah.reset()"><input type="button" name="button" value="Reset"></a>
-    <a href="lihat_rumah"><input type="button2" name="button" value="Reset"></a>
+    <a href="javascript:document.form_tambah_rumah.reset()"><input type="button" name="button" value="Reset"></input></a>
+    <a href="lihat_rumah"><input type="button2" name="button" value="Reset"></input></a>
   </div>
   <p>&nbsp;</p>
   <p>&nbsp;  </p>
