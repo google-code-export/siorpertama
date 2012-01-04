@@ -131,6 +131,23 @@ public class DaftarKeluargaindo implements Serializable {
         } return false;
     }
 
+     public Keluargaindo getKeluarga(Long idKeluarga) {
+        Keluargaindo keluarga = null;
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT object(o) FROM Berita AS o WHERE o.id=:ib");
+            q.setParameter("ib", idKeluarga);
+            //q.setParameter("pswd", password);
+            keluarga = (Keluargaindo) q.getSingleResult();
+
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return keluarga;
+    }
+
     
     
 }

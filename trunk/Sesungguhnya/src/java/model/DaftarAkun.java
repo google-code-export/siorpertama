@@ -1,95 +1,185 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package model;
 
 import entity.Akun;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import model.exceptions.NonexistentEntityException;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.transaction.UserTransaction;
-import model.exceptions.RollbackFailureException;
+import javax.persistence.*;
 
-/**
- *
- * @author ntonk
- */
+import model.exceptions.NonexistentEntityException;
+
+
+@Entity
 public class DaftarAkun implements Serializable {
 
     public DaftarAkun() {
-        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU"); //SesungguhnyaPU >> dilihat i persistence.xml
+        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
     }
     
+    @Id
     private EntityManagerFactory emf = null;
+   // private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public List<Akun> getAkun() {
-        List<Akun> akun = new ArrayList<Akun>();
-
+    public boolean check(String email, String password) {
+        boolean result = false;
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT a FROM Keluargaindo AS a");
-            akun = q.getResultList();
+            Query q = em.createQuery("SELECT count(o) FROM Akun AS o WHERE o.email=:email AND o.password=:password");
+            q.setParameter("email", email);
+            q.setParameter("password", password);
+            int jumlahAkun = ((Long) q.getSingleResult()).intValue();
+            if (jumlahAkun > 0) {
+                result = true;
+            }
+        } finally {
+            em.close();
+        }
+        return result;
+    }
 
+    public boolean checkId(Long id) {
+        boolean result = false;
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT count(o) FROM Akun AS o WHERE o.id=:id");
+            q.setParameter("id", id);
+            int jumlahAkun = ((Long) q.getSingleResult()).intValue();
+            if (jumlahAkun > 0) {
+                result = true;
+            }
+        } finally {
+            em.close();
+        }
+        return result;
+    }
+
+    public boolean checkEmail(String email) {
+        boolean result = false;
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT count(o) FROM Akun AS o WHERE o.email=:email");
+            q.setParameter("email", email);
+            int jumlahAkun = ((Long) q.getSingleResult()).intValue();
+            if (jumlahAkun > 0) {
+                result = true;
+            }
+        } finally {
+            em.close();
+        }
+        return result;
+    }
+
+    public boolean checkUsername(String username) {
+        boolean result = false;
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT count(o) FROM Akun AS o WHERE o.username=:username");
+            q.setParameter("username", username);
+            int jumlahAkun = ((Long) q.getSingleResult()).intValue();
+            if (jumlahAkun > 0) {
+                result = true;
+            }
+        } finally {
+            em.close();
+        }
+        return result;
+    }
+    
+    public Akun getAkun(String email, String password) {
+        Akun akun = null;
+        EntityManager em = getEntityManager();
+        try {
+            boolean hasilCheck = this.check(email, password);
+            if (hasilCheck) {
+                Query q = em.createQuery("SELECT object(o) FROM Akun AS o WHERE o.email=:email AND o.password=:password");
+                q.setParameter("email", email);
+                q.setParameter("password", password);
+                akun = (Akun) q.getSingleResult();
+            }
         } finally {
             em.close();
         }
         return akun;
     }
 
-    public Akun findAkun(Integer id) {
+    public Akun findAkun(Long id) {
+        Akun akun = null;
         EntityManager em = getEntityManager();
         try {
-            return em.find(Akun.class, id);
+            boolean hasilCheck = this.checkId(id);
+            if (hasilCheck) {
+                Query q = em.createQuery("SELECT object(o) FROM Akun AS o WHERE o.id=:id");
+                q.setParameter("id", id);
+                akun = (Akun) q.getSingleResult();
+            }
+        } finally {
+            em.close();
+        }
+        return akun;
+    }
+
+    public List<Akun> getAkuns(Long id) {
+        List<Akun> akuns = new ArrayList<Akun>();
+
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT object(o) FROM Akun AS o where o.id=:id");
+            q.setParameter("id", id);
+            akuns = q.getResultList();
+
+        } finally {
+            em.close();
+        }
+        return akuns;
+    }
+
+    public List<Akun> getAkuns() {
+        List<Akun> akuns = new ArrayList<Akun>();
+
+        EntityManager em = getEntityManager();
+        try {
+            Query q = em.createQuery("SELECT object(o) FROM Akun AS o");
+            akuns = q.getResultList();
+
+        } finally {
+            em.close();
+        }
+        return akuns;
+    }
+
+    public void editAkun(Akun akun) {
+        EntityManager em = null;
+        em.getTransaction().begin();
+        try {
+            em.merge(akun);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }
     }
-    
-    public void tambahKeluarga(Akun akun) {
+
+    public void addAkun(Akun akun) {
         EntityManager em = null;
+        em.getTransaction().begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             em.persist(akun);
             em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
-    public void edit(Akun akun) {
-        EntityManager em = null;
-        try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            akun = em.merge(akun);
-            em.getTransaction().commit();
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
-    }
-
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public void deleteAkun(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -97,8 +187,9 @@ public class DaftarAkun implements Serializable {
             Akun akun;
             try {
                 akun = em.getReference(Akun.class, id);
+                akun.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("Keluarga belum dipilih.", enfe);
+                throw new NonexistentEntityException("The user with id " + id + " no longer exists.", enfe);
             }
             em.remove(akun);
             em.getTransaction().commit();
@@ -108,37 +199,13 @@ public class DaftarAkun implements Serializable {
             }
         }
     }
-    
-    public boolean isKodeExist(String kode) {
-        DaftarAkun daftarAkun = new DaftarAkun();
-        List<Akun> listAkun = daftarAkun.getAkun();
-        Iterator<Akun> iterator = listAkun.iterator();
-        Akun tes = new Akun();
 
-        while (iterator.hasNext()) {
-            tes = iterator.next();
-            if (kode.equalsIgnoreCase(tes.getIdAkun())) {
-                return true;
-            }
-        } return false;
-    }
-    
-    public boolean isNamaExist(String nama) {
-        DaftarAkun daftarAkun = new DaftarAkun();
-        List<Akun> listAkun = daftarAkun.getAkun();
-        Iterator<Akun> iterator = listAkun.iterator();
-        Akun tes = new Akun();
-        
-        while (iterator.hasNext()) {
-            tes = iterator.next();
-            if (nama.equalsIgnoreCase(tes.getUsername())) {
-                return true;
-            }
-        } return false;
+    public EntityManagerFactory getEmf() {
+        return emf;
     }
 
-    
-
-    
-    
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 }
+

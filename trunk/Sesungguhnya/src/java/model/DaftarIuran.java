@@ -5,14 +5,14 @@
 package model;
 
 import entity.Iuran;
+import entity.Rumah;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import model.exceptions.NonexistentEntityException;
 
 
 /**
@@ -32,20 +32,18 @@ public class DaftarIuran {
     }
 
     
-    public List<Iuran> getIuran() {
-    
-        List<Iuran> iuran = new ArrayList<Iuran>();
+   public List<Iuran> getIuran() {
+        List<Iuran> hunian = new ArrayList<Iuran>();
 
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT a FROM Iuran AS a");
-            iuran = q.getResultList();
+            Query q = em.createQuery("SELECT a FROM Hunian AS a");
+            hunian = q.getResultList();
 
         } finally {
             em.close();
         }
-        return iuran;
-    
+        return hunian;
     }
     public Iuran findIuran(String kodeiuran) {
         EntityManager em = getEntityManager();
@@ -69,14 +67,15 @@ public class DaftarIuran {
             }
         }
     }
-    public List<Iuran> seluruhDaftarIuran () {
-        List<Iuran> iuran = null;
+
+    public List<Rumah> seluruhDaftarIuran () {
+        List<Rumah> rumah = null;
         EntityManager em = null;
         try {
             em = getEntityManager();
             Query q = em.createQuery("SELECT object(o) FROM rumah as o ORDER BY o.id DESC");
             q.setMaxResults(10);
-            iuran = q.getResultList();
+            rumah = q.getResultList();
 
         } catch (javax.persistence.EntityNotFoundException e) {
         } finally {
@@ -84,36 +83,7 @@ public class DaftarIuran {
                 em.close();
             }
         }
-        return iuran;
-    }
-    
-    public Iuran findIuran(Integer id) {
-        EntityManager em = getEntityManager();
-        try {
-            return em.find(Iuran.class, id);
-        } finally {
-            em.close();
-        }
-    }
-    
-    public void destroy(Integer id) throws NonexistentEntityException {
-        EntityManager em = null;
-        try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            Iuran iuran;
-            try {
-                iuran = em.getReference(Iuran.class, id);
-            } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("Iuran belum dipilih.", enfe);
-            }
-            em.remove(iuran);
-            em.getTransaction().commit();
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
+        return rumah;
     }
     
      public void tambahIuran(Iuran iuran) {
@@ -134,4 +104,19 @@ public class DaftarIuran {
         }
 
     }
+     
+     public boolean isKodeExist(String kode) {
+        DaftarIuran daftarIuran = new DaftarIuran();
+        List<Iuran> listIuran = daftarIuran.getIuran();
+        Iterator<Iuran> iterator = listIuran.iterator();
+        Iuran tes = new Iuran();
+
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (kode.equalsIgnoreCase(tes.getKodeiuran())) {
+                return true;
+            }
+        } return false;
+    }
+     
 }

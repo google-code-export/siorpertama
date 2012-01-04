@@ -7,6 +7,7 @@ package model;
 import entity.Hunian;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,12 +36,12 @@ public class DaftarHunian implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    public List<Hunian> getHunianid() {
+    public List<Hunian> getHunian() {
         List<Hunian> hunian = new ArrayList<Hunian>();
 
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT a FROM Keluargaindo AS a");
+            Query q = em.createQuery("SELECT a FROM Hunian AS a");
             hunian = q.getResultList();
 
         } finally {
@@ -49,31 +50,28 @@ public class DaftarHunian implements Serializable {
         return hunian;
     }
 
+    public Hunian findHunian(Integer id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Hunian.class, id);
+        } finally {
+            em.close();
+        }
+    }
 
-    public void TambahHunian(Hunian hunian) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void tambahHunian (Hunian hunian) {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             em.persist(hunian);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findHunian(hunian.getKodehunian()) != null) {
-                throw new PreexistingEntityException("Hunian " + hunian + " already exists.", ex);
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
             }
         }
     }
-
     public void editHunian(Hunian hunian) {
         EntityManager em = null;
         try {
@@ -163,4 +161,18 @@ public class DaftarHunian implements Serializable {
         }
     }
     
+    public boolean isKodeExist(String kode) {
+        DaftarHunian daftarHunian = new DaftarHunian();
+        List<Hunian> listHunian = daftarHunian.getHunian();
+        Iterator<Hunian> iterator = listHunian.iterator();
+        Hunian tes = new Hunian();
+
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (kode.equalsIgnoreCase(tes.getKodehunian())) {
+                return true;
+            }
+        } return false;
+    }
+
 }

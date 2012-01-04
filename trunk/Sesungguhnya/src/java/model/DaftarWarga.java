@@ -15,8 +15,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+
+
 import model.exceptions.NonexistentEntityException;
 import javax.persistence.Persistence;
+
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
@@ -32,19 +35,22 @@ import model.exceptions.RollbackFailureException;
  */
 public class DaftarWarga implements Serializable {
 
+
     public DaftarWarga() {
-        emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
-       
+      emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
     }
+   
     private EntityManagerFactory emf = null;
-    private UserTransaction utx = null;
+
+    //private UserTransaction utx = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
   
     
-    public List<Warga> getIdWarga() {
+     
+    public List<Warga> getWarga() {
         List<Warga> warga = new ArrayList<Warga>();
 
         EntityManager em = getEntityManager();
@@ -81,60 +87,33 @@ public class DaftarWarga implements Serializable {
         }
     }
 
-
-   public void editWarga(Warga warga) throws RollbackFailureException, NonexistentEntityException{
-    EntityManager em = null;
+   public void editWarga(Warga warga) {
+        EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             warga = em.merge(warga);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                int id = warga.getIdWarga();
-                if (findWarga(id) == null) {
-                    throw new NonexistentEntityException("Warga dengan user id" + " "+ id +" " + " tidak terdaftar .");
-                }
-            }
-            try {
-                throw ex;
-            } catch (Exception ex1) {
-                Logger.getLogger(DaftarAkun.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
             }
-         }
+        }
     }
-
-    public void destroy(Integer id) throws NonexistentEntityException, RollbackFailureException, Exception {
+   
+     public void hapusWarga(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
-            utx.begin();
             em = getEntityManager();
+            em.getTransaction().begin();
             Warga warga;
             try {
                 warga = em.getReference(Warga.class, id);
-                int noktp = warga.getNoktp();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The warga with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("Keluarga belum dipilih.", enfe);
             }
             em.remove(warga);
-            utx.commit();
-        } catch (Exception ex) {
-            try {
-                utx.rollback();
-            } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            throw ex;
+            em.getTransaction().commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -179,6 +158,18 @@ public class DaftarWarga implements Serializable {
         }
     }
 
-   
+     public boolean isKodeExist(String kode) {
+        DaftarWarga daftarWarga = new DaftarWarga();
+        List<Warga> listWarga = daftarWarga.getWarga();
+        Iterator<Warga> iterator = listWarga.iterator();
+        Warga tes = new Warga();
+
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (kode.equalsIgnoreCase(tes.getKotaktp())) {
+                return true;
+            }
+        } return false;
+    }
     
 }
