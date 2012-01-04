@@ -54,7 +54,7 @@ public class Register extends HttpServlet {
 
          if (email.equals("") || username.equals("")|| password.equals("") || rtakun.equals("") || rwakun.equals("") || kelurahanakun.equals("") || kecamatanakun.equals("") || kotaakun.equals("") || jumlahrumah.equals("")) {
             request.setAttribute("error", "Mohon isi form dengan lengkap !");
-            RequestDispatcher rdp = request.getRequestDispatcher("sior/register.jsp");
+            RequestDispatcher rdp = request.getRequestDispatcher("/sior/register.jsp");
             rdp.forward(request, response);
 
         }
@@ -71,11 +71,11 @@ public class Register extends HttpServlet {
                     akun.setKotaakun(kotaakun);
                     akun.setJumlahrumah(jumlahrumah);
                     daftar.addAkun(akun);
-                    response.sendRedirect("sior/RegisterBerhasil");
+                    response.sendRedirect("RegisterBerhasil");
                 } else {
                    //out.println("Username telah terdaftar");
                     request.setAttribute("error", "Gagal melakukan register. Silahkan ulangi !");
-                    RequestDispatcher rdp = request.getRequestDispatcher("sior/register");
+                    RequestDispatcher rdp = request.getRequestDispatcher("/sior/register.jsp");
                     rdp.forward(request, response);
                 }
 
@@ -96,10 +96,11 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        String destination = "/registrasi.jsp";
+        /* String destination = "/register.jsp";
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
-        rd.forward(request, response);
+        rd.forward(request, response);*/
+        
         
     }
 

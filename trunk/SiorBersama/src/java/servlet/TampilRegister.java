@@ -31,8 +31,10 @@ public class TampilRegister extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        RequestDispatcher rdp = request.getRequestDispatcher("/sior/register.jsp");
-        rdp.forward(request, response);
+        String destination = "/sior/register.jsp";
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

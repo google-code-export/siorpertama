@@ -33,7 +33,7 @@ public class RegisterBerhasil extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         request.setAttribute("berhasil", "Selamat Registrasi Berhasil. Silakan Lakukan LOGIN !");
-        RequestDispatcher rdp = request.getRequestDispatcher("sior/home.jsp");
+        RequestDispatcher rdp = request.getRequestDispatcher("/sior/home.jsp");
         rdp.forward(request, response);
     }
 
