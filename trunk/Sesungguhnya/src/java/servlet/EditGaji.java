@@ -4,27 +4,27 @@
  */
 package servlet;
 
-import comparator.AkunComparator;
-import entity.Akun;
-import model.DaftarAkun;
+import comparator.GajiComparator;
+import entity.Gaji;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+import model.DaftarGaji;
 
 /**
  *
  * @author ntonk
  */
-@WebServlet(name = "EditAkun", urlPatterns = {"/EditAkun"})
-public class EditAkun extends HttpServlet {
+@WebServlet(name = "EditGaji", urlPatterns = {"/EditGaji"})
+public class EditGaji extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,36 +41,36 @@ public class EditAkun extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditAkun</title>");  
+            out.println("<title>Servlet EditGaji</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditAkun at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditGaji at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
-            DaftarAkun daftarAkun = new DaftarAkun();
-            List<Akun> listAkun = daftarAkun.getAkun();
-            Collections.sort(listAkun, new AkunComparator());
-            request.setAttribute("list_akun", listAkun);
+            DaftarGaji daftarGaji = new DaftarGaji();
+            List<Gaji> listGaji = daftarGaji.getGaji();
+            Collections.sort(listGaji, new GajiComparator());
+            request.setAttribute("list_gaji", listGaji);
             String jsp = "";
-            String cekAkun[] = request.getParameterValues("cek_akun");
-            
-             if (cekAkun == null) {
-                JOptionPane.showMessageDialog(null, "Akun tidak ada yang dipilih",
+            String cekGaji[] = request.getParameterValues("cek_gaji");
+
+            if (cekGaji == null) {
+                JOptionPane.showMessageDialog(null, "Gaji tidak tersedia",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else if (cekAkun.length > 1) {
-                JOptionPane.showMessageDialog(null, "Pilih salah satu akun !",
+                jsp = "halaman/lihat_gajis.jsp";
+            } else if (cekGaji.length > 1) {
+                JOptionPane.showMessageDialog(null, "Pilih salah satu gaji !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
+                jsp = "halaman/lihat_gajis.jsp";
             } else {
-                Integer idAkun = Integer.parseInt(cekAkun[0]);
-                Akun akun = daftarAkun.findAkun(idAkun);
-                request.setAttribute("akun_edit", akun);
-                jsp = "/halaman/edit_akun.jsp";
+                Integer idGaji = Integer.parseInt(cekGaji[0]);
+                Gaji gaji = daftarGaji.findGaji(idGaji);
+                request.setAttribute("gaji_edit", gaji);
+                jsp = "/halaman/edit_gaji.jsp";
             }
-             
-              RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
         } finally {            
             out.close();

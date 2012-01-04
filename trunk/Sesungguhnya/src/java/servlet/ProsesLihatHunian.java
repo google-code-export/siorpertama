@@ -4,27 +4,26 @@
  */
 package servlet;
 
-import comparator.AkunComparator;
-import entity.Akun;
-import model.DaftarAkun;
+import comparator.HunianComparator;
+import entity.Hunian;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
+import model.DaftarHunian;
 
 /**
  *
  * @author ntonk
  */
-@WebServlet(name = "EditAkun", urlPatterns = {"/EditAkun"})
-public class EditAkun extends HttpServlet {
+@WebServlet(name = "ProsesLihatHunian", urlPatterns = {"/ProsesLihatHunian"})
+public class ProsesLihatHunian extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,36 +40,24 @@ public class EditAkun extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditAkun</title>");  
+            out.println("<title>Servlet ProsesLihatHunian</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditAkun at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProsesLihatHunian at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
-            DaftarAkun daftarAkun = new DaftarAkun();
-            List<Akun> listAkun = daftarAkun.getAkun();
-            Collections.sort(listAkun, new AkunComparator());
-            request.setAttribute("list_akun", listAkun);
-            String jsp = "";
-            String cekAkun[] = request.getParameterValues("cek_akun");
             
-             if (cekAkun == null) {
-                JOptionPane.showMessageDialog(null, "Akun tidak ada yang dipilih",
-                        "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else if (cekAkun.length > 1) {
-                JOptionPane.showMessageDialog(null, "Pilih salah satu akun !",
-                        "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else {
-                Integer idAkun = Integer.parseInt(cekAkun[0]);
-                Akun akun = daftarAkun.findAkun(idAkun);
-                request.setAttribute("akun_edit", akun);
-                jsp = "/halaman/edit_akun.jsp";
-            }
-             
-              RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
+            DaftarHunian daftarhunian = new DaftarHunian();
+            Hunian hunian = new Hunian();
+            
+            String jsp = "";
+            jsp ="halaman/daftarhunian.jsp";
+            
+            List<Hunian> listHunian = daftarhunian.getHunianid();
+            Collections.sort(listHunian, new HunianComparator());
+            request.setAttribute("list_hunian", listHunian);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
         } finally {            
             out.close();

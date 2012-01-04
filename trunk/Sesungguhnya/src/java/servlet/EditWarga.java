@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
  *
  * @author ntonk
  */
-@WebServlet(name = "EditAkun", urlPatterns = {"/EditAkun"})
-public class EditAkun extends HttpServlet {
+@WebServlet(name = "EditWarga", urlPatterns = {"/EditWarga"})
+public class EditWarga extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,37 +41,14 @@ public class EditAkun extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditAkun</title>");  
+            out.println("<title>Servlet EditWarga</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditAkun at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditWarga at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
-            DaftarAkun daftarAkun = new DaftarAkun();
-            List<Akun> listAkun = daftarAkun.getAkun();
-            Collections.sort(listAkun, new AkunComparator());
-            request.setAttribute("list_akun", listAkun);
-            String jsp = "";
-            String cekAkun[] = request.getParameterValues("cek_akun");
             
-             if (cekAkun == null) {
-                JOptionPane.showMessageDialog(null, "Akun tidak ada yang dipilih",
-                        "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else if (cekAkun.length > 1) {
-                JOptionPane.showMessageDialog(null, "Pilih salah satu akun !",
-                        "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else {
-                Integer idAkun = Integer.parseInt(cekAkun[0]);
-                Akun akun = daftarAkun.findAkun(idAkun);
-                request.setAttribute("akun_edit", akun);
-                jsp = "/halaman/edit_akun.jsp";
-            }
-             
-              RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
-            requestDispatcher.forward(request, response);
         } finally {            
             out.close();
         }

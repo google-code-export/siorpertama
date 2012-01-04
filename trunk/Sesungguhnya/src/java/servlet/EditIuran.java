@@ -4,27 +4,27 @@
  */
 package servlet;
 
-import comparator.AkunComparator;
-import entity.Akun;
-import model.DaftarAkun;
+import comparator.IuranComparator;
+import entity.Iuran;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+import model.DaftarIuran;
 
 /**
  *
  * @author ntonk
  */
-@WebServlet(name = "EditAkun", urlPatterns = {"/EditAkun"})
-public class EditAkun extends HttpServlet {
+@WebServlet(name = "EditIuran", urlPatterns = {"/EditIuran"})
+public class EditIuran extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,37 +41,38 @@ public class EditAkun extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditAkun</title>");  
+            out.println("<title>Servlet EditIuran</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditAkun at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditIuran at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
-            DaftarAkun daftarAkun = new DaftarAkun();
-            List<Akun> listAkun = daftarAkun.getAkun();
-            Collections.sort(listAkun, new AkunComparator());
-            request.setAttribute("list_akun", listAkun);
+            DaftarIuran daftarIuran = new DaftarIuran();
+            List<Iuran> listIuran = daftarIuran.getIuran();
+            Collections.sort(listIuran, new IuranComparator());
+            request.setAttribute("list_iuran", listIuran);
             String jsp = "";
-            String cekAkun[] = request.getParameterValues("cek_akun");
-            
-             if (cekAkun == null) {
-                JOptionPane.showMessageDialog(null, "Akun tidak ada yang dipilih",
+            String cekIuran[] = request.getParameterValues("cek_iuran");
+
+            if (cekIuran == null) {
+                JOptionPane.showMessageDialog(null, "Iuran tidak ada",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
-            } else if (cekAkun.length > 1) {
-                JOptionPane.showMessageDialog(null, "Pilih salah satu akun !",
+                jsp = "halaman/iuran.jsp";
+            } else if (cekIuran.length > 1) {
+                JOptionPane.showMessageDialog(null, "Pilih salah satu jenis iuran saja !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                jsp = "halaman/akun.jsp";
+                jsp = "halaman/iuran.jsp";
             } else {
-                Integer idAkun = Integer.parseInt(cekAkun[0]);
-                Akun akun = daftarAkun.findAkun(idAkun);
-                request.setAttribute("akun_edit", akun);
-                jsp = "/halaman/edit_akun.jsp";
+                String kodeiuran = (cekIuran[0]);
+                Iuran keluarga = daftarIuran.findIuran(kodeiuran);
+                request.setAttribute("Iuran_edit", keluarga);
+                jsp = "/halaman/edit_iuran.jsp";
             }
-             
-              RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
+
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
+            
         } finally {            
             out.close();
         }

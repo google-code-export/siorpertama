@@ -4,11 +4,11 @@
  */
 package servlet;
 
-import comparator.HunianComparator;
-import entity.Hunian;
+import comparator.IuranComparator;
+import entity.Iuran;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DaftarHunian;
+import model.DaftarIuran;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -27,8 +27,8 @@ import model.exceptions.RollbackFailureException;
  *
  * @author ntonk
  */
-@WebServlet(name = "ProsesEditHunian", urlPatterns = {"/ProsesEditHunian"})
-public class ProsesEditHunian extends HttpServlet {
+@WebServlet(name = "ProsesEditIuran", urlPatterns = {"/ProsesEditIuran"})
+public class ProsesEditIuran extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,47 +38,48 @@ public class ProsesEditHunian extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NonexistentEntityException, RollbackFailureException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProsesEditHunian</title>");  
+            out.println("<title>Servlet ProsesEditIuran</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProsesEditHunian at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProsesEditIuran at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
-            DaftarHunian daftarHunian = new DaftarHunian();
+            DaftarIuran daftariuran = new DaftarIuran();
             String jsp = "";           
 
-            String idhunian = request.getParameter("id_hunian");
-            String kodehunian = request.getParameter("kode_hunian");
-           
+            String kodeiuran = request.getParameter("kode_iuran");
+            String kodekeluarga = request.getParameter("kode_keluarga");
             
+                       
             
-            String idhuni = request.getParameter("id_edit_hunian");
-            Integer idHuni = Integer.parseInt(idhuni);
-            Hunian hunian = daftarHunian.findHunian(idhuni);
-            if (idhunian.equals("")) {
-                JOptionPane.showMessageDialog(null, "id hunian harus diisi !",
+            String kdiu = request.getParameter("id_edit_iuran");
+            Integer kdIu = Integer.parseInt(kdiu);
+            Iuran iuran = daftariuran.findIuran(kdIu);
+            
+            if (kodeiuran.equals("")) {
+                JOptionPane.showMessageDialog(null, "kode iuran harus diisi !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("hunian_edit", hunian);
-                jsp = "halaman/edit_hunian.jsp";
-            } else if (kodehunian.equals("")) {
-                JOptionPane.showMessageDialog(null, "kode hunian harus diisi !",
+                request.setAttribute("iuran_edit", iuran);
+                jsp = "halaman/edit_iuran.jsp";
+            } else if (kodekeluarga.equals("")) {
+                JOptionPane.showMessageDialog(null, "kode keluarga harus diisi !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("hunian_edit", hunian);
-                jsp = "halaman/edit_hunian.jsp";
+                request.setAttribute("iuran_edit", iuran);
+                jsp = "halaman/edit_iuran.jsp";
             } //validate length field
-            else if (idhunian.equalsIgnoreCase("000000")) {
-                JOptionPane.showMessageDialog(null, "kode hunian tidak boleh bernilai nol !",
+            else if (kodeiuran.equalsIgnoreCase("000000")) {
+                JOptionPane.showMessageDialog(null, "kode iuran tidak boleh bernilai nol !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("hunian_edit", hunian);
-                jsp = "halaman/edit_hunian.jsp";  
+                request.setAttribute("iuran_edit", iuran);
+                jsp = "halaman/edit_iuran.jsp";  
             } //validate record on database
            // else if (daftarakun.isKodeExist && !username.isKodeNoChange(kdkeluarga)) {
                // JOptionPane.showMessageDialog(null, "Kode Keluarga sudah ada dalam database !",
@@ -87,23 +88,25 @@ public class ProsesEditHunian extends HttpServlet {
                // jsp = "halaman/edit_keluarga.jsp";
            // } //validate nmbankpos on database
               else {
-                hunian.setIdHunian(idhunian);
-                hunian.setKodehunian(kodehunian);
+               iuran.setKodeiuran(kodeiuran);
+               iuran.setKodekeluarga(kodekeluarga);
+               
+              
                 
-                daftarHunian.editHunian(hunian);
-                List<Hunian> listHunian = daftarHunian.getHunianid();
-                listHunian = daftarHunian.getHunianid();
-                Collections.sort(listHunian, new HunianComparator());
-                request.setAttribute("list_hunian", listHunian);
-                jsp = "halaman/daftarhunian.jsp";
+                daftariuran.editIuran(iuran);
+                List<Iuran> listwarga = daftariuran.getIuran();
+                listwarga = daftariuran.getIuran();
+                Collections.sort(listwarga, new IuranComparator());
+                request.setAttribute("list_warga", listwarga);
+                jsp = "halaman/Daftar_warga.jsp";
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
-            
         } finally {            
             out.close();
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -115,15 +118,7 @@ public class ProsesEditHunian extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RollbackFailureException ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /** 
@@ -136,15 +131,7 @@ public class ProsesEditHunian extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RollbackFailureException ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(ProsesEditHunian.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /** 

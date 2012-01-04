@@ -60,23 +60,23 @@ public class ProsesEditAkun extends HttpServlet {
                        
             
             String idusr = request.getParameter("id_edit_akun");
-            Akun user = daftarakun.findAkun(userid);
-
+            Integer iduse = Integer.parseInt(idusr);
+            Akun akun = daftarakun.findAkun(iduse);
             if (userid.equals("")) {
                 JOptionPane.showMessageDialog(null, "User id harus diisi !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("akun_edit", user);
+                request.setAttribute("akun_edit", akun);
                 jsp = "halaman/edit_akun.jsp";
             } else if (username.equals("")) {
                 JOptionPane.showMessageDialog(null, "username harus diisi !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("akun_edit", user);
+                request.setAttribute("akun_edit", akun);
                 jsp = "halaman/edit_akun.jsp";
             } //validate length field
             else if (username.equalsIgnoreCase("000000")) {
                 JOptionPane.showMessageDialog(null, "username tidak boleh bernilai nol !",
                         "Error!",JOptionPane.WARNING_MESSAGE);
-                request.setAttribute("akun_edit", user);
+                request.setAttribute("akun_edit", akun);
                 jsp = "halaman/edit_akun.jsp";  
             } //validate record on database
            //else if (daftarakun.isKodeExist && !username.isKodeNoChange(kdkeluarga)) {
@@ -89,12 +89,12 @@ public class ProsesEditAkun extends HttpServlet {
           //validate nmbankpos on database
 
              else {
-                user.setIdAkun(userid);
-                user.setUsername(username);
+                akun.setIdAkun(userid);
+                akun.setUsername(username);
                 
-                daftarakun.editAkun(user);
-                List<Akun> listuser = daftarakun.getUsername();
-                listuser = daftarakun.getUsername();
+                daftarakun.edit(akun);
+                List<Akun> listuser = daftarakun.getAkun();
+                listuser = daftarakun.getAkun();
                 Collections.sort(listuser, new AkunComparator());
                 request.setAttribute("list_user_account", listuser);
                 jsp = "halaman/Daftar_User.jsp";

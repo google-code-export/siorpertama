@@ -99,7 +99,7 @@ public class ProsesEditWarga extends HttpServlet {
                 listwarga = daftarwarga.getIdWarga();
                 Collections.sort(listwarga, new WargaComparator());
                 request.setAttribute("list_warga", listwarga);
-                jsp = "halaman/Daftar_warga.jsp";
+                jsp = "halaman/daftar_warga.jsp";
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(jsp);
             requestDispatcher.forward(request, response);
