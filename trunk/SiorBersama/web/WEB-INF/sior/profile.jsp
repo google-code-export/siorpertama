@@ -81,33 +81,33 @@
       <td></td>
       <td>RT Akun</td>
       <td width="13" align="center"> : </td>
-      <td width="128"><input name="rt_akun" type="text" size="10px" /></td>
+      <td width="128"><input name="rtakun" type="text" id="rtakun" size="10px" /></td>
       <td width="10"></td>
       <td width="78">RW Akun</td>
       <td width="12" align="center"> : </td>
-      <td width="133"><input name="rw_akun" type="text" size="10px" /></td>
+      <td width="133"><input name="rwakun" type="text" id="rwakun" size="10px" /></td>
     </tr>
     <tr>
       <td></td>
       <td>Kelurahan</td>
       <td align="center"> : </td>
-      <td><input name="kelurahan_akun" type="text" size="20px" /></td>
+      <td><input name="kelurahanakun" type="text" id="kelurahanakun" size="20px" /></td>
       <td></td>
       <td>Kecamatan</td>
       <td align="center"> : </td>
-      <td><input name="kecamatan_akun" type="text" size="20px" /></td>
+      <td><input name="kecamatanakun" type="text" id="kecamatanakun" size="20px" /></td>
     </tr>
     <tr>
       <td></td>
       <td>Kota</td>
       <td align="center"> : </td>
-      <td><input name="kota_akun" type="text" size="20px" /></td>
+      <td><input name="kotaakun" type="text" id="kotaakun" size="20px" /></td>
     </tr>
     <tr>
       <td></td>
       <td>Jumlah Rumah</td>
       <td align="center"> : </td>
-      <td><input name="jumlah_rumah" type="text" size="10px" /></td>
+      <td><input name="jumlahrumah" type="text" id="jumlahrumah" size="10px" /></td>
     </tr>
   </table>
   <p>
@@ -146,7 +146,7 @@
 	            <form method="get" action="#">
 	              <p>Hi, User</p>
 	              <p>
-	                <!-- #BeginDate format:fcAm1a -->Wednesday, January 4, 2012 10:23 PM<!-- #EndDate -->
+	                <!-- #BeginDate format:fcAm1a -->Wednesday, January 4, 2012 11:20 PM<!-- #EndDate -->
                   </p>
 	              <p>
 	                <input class="button" type="submit" name="Submit" value="Logoff" />
