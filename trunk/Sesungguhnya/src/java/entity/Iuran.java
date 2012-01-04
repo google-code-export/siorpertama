@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,53 +39,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Iuran implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "kodeiuran")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String kodeiuran;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "kodekeluarga")
     private String kodekeluarga;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "jenisiuran")
     private String jenisiuran;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-
-    @Column(name = "bulaniuran")
     private String bulaniuran;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "jumlahbayar")
     private int jumlahbayar;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "tanggalbayar")
-    @Temporal(TemporalType.DATE)
-    private Date tanggalbayar;
+    private String tanggalbayar;
 
-    public Iuran() {
+    public Long getId() {
+        return id;
     }
-
-    public Iuran(String kodeiuran) {
-        this.kodeiuran = kodeiuran;
+    
+    public void setId(Long id) {
+        this.id=id;
     }
-
-    public Iuran(String kodeiuran, String kodekeluarga, String jenisiuran, String bulaniuran, int jumlahbayar, Date tanggalbayar) {
-        this.kodeiuran = kodeiuran;
-        this.kodekeluarga = kodekeluarga;
-        this.jenisiuran = jenisiuran;
-        this.bulaniuran = bulaniuran;
-        this.jumlahbayar = jumlahbayar;
-        this.tanggalbayar = tanggalbayar;
-    }
-
+    
     public String getKodeiuran() {
         return kodeiuran;
     }
@@ -124,11 +96,11 @@ public class Iuran implements Serializable {
         this.jumlahbayar = jumlahbayar;
     }
 
-    public Date getTanggalbayar() {
+    public String getTanggalbayar() {
         return tanggalbayar;
     }
 
-    public void setTanggalbayar(Date tanggalbayar) {
+    public void setTanggalbayar(String tanggalbayar) {
         this.tanggalbayar = tanggalbayar;
     }
 

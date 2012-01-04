@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -5,47 +6,49 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 /**
  *
- * @author ntonk
+ * @author acer
  */
-/*@Entity
-@Table(name = "akun")
-@XmlRootElement
-  @NamedQueries({
-    @NamedQuery(name = "Akun.findAll", query = "SELECT a FROM Akun a"),
-    @NamedQuery(name = "Akun.findByUsername", query = "SELECT a FROM Akun a WHERE a.username = :username"),
-    @NamedQuery(name = "Akun.findByPassword", query = "SELECT a FROM Akun a WHERE a.password = :password"),
-    @NamedQuery(name = "Akun.findByEmail", query = "SELECT a FROM Akun a WHERE a.email = :email"),
-    @NamedQuery(name = "Akun.findByNamaakun", query = "SELECT a FROM Akun a WHERE a.namaakun = :namaakun"),
-    @NamedQuery(name = "Akun.findByRtakun", query = "SELECT a FROM Akun a WHERE a.rtakun = :rtakun"),
-    @NamedQuery(name = "Akun.findByRwakun", query = "SELECT a FROM Akun a WHERE a.rwakun = :rwakun"),
-    @NamedQuery(name = "Akun.findByKelurahanakun", query = "SELECT a FROM Akun a WHERE a.kelurahanakun = :kelurahanakun"),
-    @NamedQuery(name = "Akun.findByKecamatanakun", query = "SELECT a FROM Akun a WHERE a.kecamatanakun = :kecamatanakun"),
-    @NamedQuery(name = "Akun.findByKotaakun", query = "SELECT a FROM Akun a WHERE a.kotaakun = :kotaakun"),
-    @NamedQuery(name = "Akun.findByJumlahrumah", query = "SELECT a FROM Akun a WHERE a.jumlahrumah = :jumlahrumah"),
-    @NamedQuery(name = "Akun.findByIduser", query = "SELECT a FROM Akun a WHERE a.iduser = :iduser")})
-*/
+@Entity
+
 public class Akun implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String IdAkun;
+    private Long id;
+    private String email;
     private String username;
     private String password;
-    private String email;
-    private String namaakun;
     private String rtakun;
     private String rwakun;
     private String kelurahanakun;
     private String kecamatanakun;
     private String kotaakun;
     private String jumlahrumah;
-    
+
+  
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getUsername() {
         return username;
@@ -61,22 +64,6 @@ public class Akun implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNamaakun() {
-        return namaakun;
-    }
-
-    public void setNamaakun(String namaakun) {
-        this.namaakun = namaakun;
     }
 
     public String getRtakun() {
@@ -127,19 +114,10 @@ public class Akun implements Serializable {
         this.jumlahrumah = jumlahrumah;
     }
 
-    public String getIdAkun() {
-        return IdAkun;
-    }
-
-    public void setIdAkun(String IdAkun) {
-        this.IdAkun = IdAkun;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (IdAkun != null ? IdAkun.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -150,7 +128,7 @@ public class Akun implements Serializable {
             return false;
         }
         Akun other = (Akun) object;
-        if ((this.IdAkun == null && other.IdAkun != null) || (this.IdAkun != null && !this.IdAkun.equals(other.IdAkun))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -158,17 +136,8 @@ public class Akun implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Akun[ idAkun=" + IdAkun + " ]";
+        return "entity.Akun[ id=" + id + " ]";
     }
-
-    public boolean isUsernameNoChange(String username) {
-        if (username.equalsIgnoreCase(this.username)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     
     
     public boolean isEmailNoChange(String email) {

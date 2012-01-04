@@ -35,10 +35,8 @@ public class Hunian implements Serializable {
     private int noktp;
     private String koderumah;
     private String namalengkap;
-    @Temporal(TemporalType.DATE)
-    private Date tanggalmasuk;
-    @Temporal(TemporalType.DATE)
-    private Date tanggalkeluar;
+    private String tanggalmasuk;
+    private String tanggalkeluar;
 
     public String getIdHunian() {
         return idHunian;
@@ -80,19 +78,19 @@ public class Hunian implements Serializable {
         this.namalengkap = namalengkap;
     }
 
-    public Date getTanggalmasuk() {
+    public String getTanggalmasuk() {
         return tanggalmasuk;
     }
 
-    public void setTanggalmasuk(Date tanggalmasuk) {
+    public void setTanggalmasuk(String tanggalmasuk) {
         this.tanggalmasuk = tanggalmasuk;
     }
 
-    public Date getTanggalkeluar() {
+    public String getTanggalkeluar() {
         return tanggalkeluar;
     }
 
-    public void setTanggalkeluar(Date tanggalkeluar) {
+    public void setTanggalkeluar(String tanggalkeluar) {
         this.tanggalkeluar = tanggalkeluar;
     }
 
