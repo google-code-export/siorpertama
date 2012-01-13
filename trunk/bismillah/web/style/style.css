@@ -1,0 +1,113 @@
+/* 
+    Document   : style
+    Created on : Nov 1, 2011, 9:15:37 PM
+    Author     : alin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: midnightblue;
+	background-color: #F1F1F1;
+	margin: 4px;
+}
+h1,h2,h3,h4 {
+    line-height:60%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+p{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.lcolumnt {
+	background-image: url(../images/css_bg_lcoumn.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+.lcum {
+	background-image: url(../images/bg_lcoumn.gif);
+	background-position: right;
+	background-repeat: repeat-y;
+}
+table {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color:midnightblue;
+        line-height: 125%;
+}
+th {
+        background-color: maroon;
+        color:whitesmoke;
+}
+input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #585858;
+	background-color: #F4F4F4;
+	border: 1px solid #969696;
+}
+textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #585858;
+	background-color: #F4F4F4;
+	border: 1px solid #969696;
+}
+button {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	border: 1px solid #969696;
+}
+select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #585858;
+	background-color: #F4F4F4;
+	border: 1px solid #969696;
+}
+.contentheader {
+	background-image: url(../images/main_content_header.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+        background-size:100%;
+}
+.mctop {
+	background-image: url(../images/mc_bg_top.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+        background-size:100%;
+}
+.mcbg {
+	background-image: url(../images/mc_main_bg.gif);
+	background-repeat: repeat-y;
+	background-position: left;
+	padding-top: -20px;
+        background-size:100%;
+}
+a:link {
+	color: midnightblue;
+	text-decoration: none;
+}
+a:visited {
+	color: darkblue;
+	text-decoration: none;
+}
+a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.unnamed1 {
+	background-repeat: repeat-y;
+	background-position: center center;
+}
