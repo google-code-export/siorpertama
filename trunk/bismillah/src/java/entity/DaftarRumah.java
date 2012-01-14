@@ -1,25 +1,29 @@
 /*
- * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package model;
 
+import entity.Rumah;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import model.exceptions.NonexistentEntityException;
+import javax.persistence.Persistence;
+
 /**
  *
- * @author TYA
+ * @author Lia
  */
-public class DaftarRumah {
-    
-    private int jumlahrumah = -1;
-    
+public class DaftarRumah implements Serializable {
+
     public DaftarRumah() {
-        emf = Persistence.createEntityManagerFactory("SiorPart1PU");
+       emf = Persistence.createEntityManagerFactory("SesungguhnyaPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -27,59 +31,34 @@ public class DaftarRumah {
         return emf.createEntityManager();
     }
 
-    /**
-     * @return the jumlahPesan
-     */
-    public int getJumlahRumah() {
+  public List<Rumah> getRumah() {
+        List<Rumah> rumah = new ArrayList<Rumah>();
 
-        if (jumlahrumah == -1) {
-            EntityManager em = null;
-            try {
-                em = getEntityManager();
-                Query q = em.createQuery("SELECT count(o) FROM rumah as o");
-                Number jumlah = (Number) q.getSingleResult();
-                jumlahrumah = jumlah.intValue();
-
-            } catch (javax.persistence.EntityNotFoundException e) {
-            } finally {
-                if (em != null) {
-                    em.close();
-                }
-            }
-        }
-
-        return jumlahrumah;
-    }
-
-    public List<Rumah> seluruhDaftarRumah () {
-        List<Rumah> rumah = null;
-        EntityManager em = null;
+        EntityManager em = getEntityManager();
         try {
-            em = getEntityManager();
-            Query q = em.createQuery("SELECT object(o) FROM rumah as o ORDER BY o.id DESC");
-            q.setMaxResults(10);
+            Query q = em.createQuery("SELECT a FROM rumah AS a");
             rumah = q.getResultList();
 
-        } catch (javax.persistence.EntityNotFoundException e) {
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
         return rumah;
     }
-    
-     public void tambahRumH(Rumah rumah) {
 
+    public Rumah findRumah(Integer id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Rumah.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void tambahRumah(Rumah rumah) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            rumah.setKoderumah(null);
-            rumah.setAlamatrumah(null);
-            rumah.setKelurahanrumah(null);
-            rumah.setKecamatanrumah(null);
-            rumah.setKotarumah(null);
             em.persist(rumah);
             em.getTransaction().commit();
         } finally {
@@ -87,7 +66,55 @@ public class DaftarRumah {
                 em.close();
             }
         }
-
     }
-   
+
+    public void edit(Rumah rumah) {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            rumah = em.merge(rumah);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+    public void destroy(Integer id) throws NonexistentEntityException {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            Rumah rumah;
+            try {
+                rumah = em.getReference(Rumah.class, id);
+            } catch (EntityNotFoundException enfe) {
+                throw new NonexistentEntityException("Rumah belum dipilih.", enfe);
+            }
+            em.remove(rumah);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+    
+
+    public boolean isKodeExist(String kode) {
+        DaftarRumah daftarRumah = new DaftarRumah();
+        List<Rumah> listRumah = daftarRumah.getRumah();
+        Iterator<Rumah> iterator = listRumah.iterator();
+        Rumah tes = new Rumah();
+
+        while (iterator.hasNext()) {
+            tes = iterator.next();
+            if (kode.equalsIgnoreCase(tes.getKoderum())) {
+                return true;
+            }
+        } return false;
+    }
+    
 }
