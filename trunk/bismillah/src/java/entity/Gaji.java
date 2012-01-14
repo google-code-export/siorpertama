@@ -26,13 +26,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Gaji.findByIdgaji", query = "SELECT g FROM Gaji g WHERE g.idgaji = :idgaji"),
     @NamedQuery(name = "Gaji.findByNamapenerima", query = "SELECT g FROM Gaji g WHERE g.namapenerima = :namapenerima"),
     @NamedQuery(name = "Gaji.findByPeriodegaji", query = "SELECT g FROM Gaji g WHERE g.periodegaji = :periodegaji"),
-    @NamedQuery(name = "Gaji.findByPosisi", query = "SELECT g FROM Gaji g WHERE g.posisi = :posisi")})
+    @NamedQuery(name = "Gaji.findByPosisi", query = "SELECT g FROM Gaji g WHERE g.posisi = :posisi"),
+    @NamedQuery(name = "Gaji.findByJumlahgaji", query = "SELECT g FROM Gaji g WHERE g.jumlahgaji = :jumlahgaji")})
 public class Gaji implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "idgaji")
-    private Long idgaji;
+    private String idgaji;
     @Basic(optional = false)
     @Column(name = "namapenerima")
     private String namapenerima;
@@ -42,26 +43,30 @@ public class Gaji implements Serializable {
     @Basic(optional = false)
     @Column(name = "posisi")
     private String posisi;
+    @Basic(optional = false)
+    @Column(name = "jumlahgaji")
+    private int jumlahgaji;
 
     public Gaji() {
     }
 
-    public Gaji(Long idgaji) {
+    public Gaji(String idgaji) {
         this.idgaji = idgaji;
     }
 
-    public Gaji(Long idgaji, String namapenerima, String periodegaji, String posisi) {
+    public Gaji(String idgaji, String namapenerima, String periodegaji, String posisi, int jumlahgaji) {
         this.idgaji = idgaji;
         this.namapenerima = namapenerima;
         this.periodegaji = periodegaji;
         this.posisi = posisi;
+        this.jumlahgaji = jumlahgaji;
     }
 
-    public Long getIdgaji() {
+    public String getIdgaji() {
         return idgaji;
     }
 
-    public void setIdgaji(Long idgaji) {
+    public void setIdgaji(String idgaji) {
         this.idgaji = idgaji;
     }
 
@@ -87,6 +92,14 @@ public class Gaji implements Serializable {
 
     public void setPosisi(String posisi) {
         this.posisi = posisi;
+    }
+
+    public int getJumlahgaji() {
+        return jumlahgaji;
+    }
+
+    public void setJumlahgaji(int jumlahgaji) {
+        this.jumlahgaji = jumlahgaji;
     }
 
     @Override
