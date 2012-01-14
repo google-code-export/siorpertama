@@ -32,7 +32,7 @@ public class DaftarGaji implements Serializable {
         return emf.createEntityManager();
     }
 
-     public boolean check(Long idgaji) {
+     public boolean checkId(String idgaji) {
         boolean result = false;
         EntityManager em = getEntityManager();
         try {
@@ -48,12 +48,27 @@ public class DaftarGaji implements Serializable {
         }
         return result;
     }
-
-    public Gaji getGaji(Long idgaji) {
+     public Gaji findGaji(String idgaji) {
         Gaji gaji = null;
         EntityManager em = getEntityManager();
         try {
-            boolean hasilCheck = this.check(idgaji);
+            boolean hasilCheck = this.checkId(idgaji);
+            if (hasilCheck) {
+                Query q = em.createQuery("SELECT object(o) FROM Gaji AS o WHERE o.id=:id");
+                q.setParameter("idgaji", idgaji);
+                gaji = (Gaji) q.getSingleResult();
+            }
+        } finally {
+            em.close();
+        }
+        return gaji;
+    }
+
+    public Gaji getGaji(String idgaji) {
+        Gaji gaji = null;
+        EntityManager em = getEntityManager();
+        try {
+            boolean hasilCheck = this.checkId(idgaji);
             if (hasilCheck) {
                 Query q = em.createQuery("SELECT object(o) FROM Gaji AS o WHERE o.id=:id");
                 q.setParameter("idgaji", idgaji);
@@ -81,7 +96,7 @@ public class DaftarGaji implements Serializable {
         return proposals;
     }
     
-    public List<Gaji> getGaj(Long idgaji,String namapenerima) {
+    public List<Gaji> getGaj(String idgaji,String namapenerima) {
         List<Gaji> gajis = new ArrayList<Gaji>();
 
         EntityManager em = getEntityManager();
@@ -123,7 +138,7 @@ public class DaftarGaji implements Serializable {
         }
     }
 
-    public void deleteGaji(Long idgaji) throws NonexistentEntityException {
+    public void deleteGaji(String idgaji) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -131,7 +146,7 @@ public class DaftarGaji implements Serializable {
             Gaji gaji;
             try {
                 gaji = em.getReference(Gaji.class, idgaji);
-                Long idgaji1 = gaji.getIdgaji();
+                String idgaji1 = gaji.getIdgaji();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The transaksi with id " + idgaji + " no longer exists.", enfe);
             }
