@@ -4,9 +4,9 @@
  */
 package servlet;
 
-import entity.DaftarGaji;
+import entity.DaftarHunian;
 import entity.DaftarPengguna;
-import entity.Gaji;
+import entity.Hunian;
 import entity.Pengguna;
 import entity.exceptions.NonexistentEntityException;
 import java.io.IOException;
@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Meylindra
  */
-@WebServlet(name = "ProsesHapusGaji", urlPatterns = {"/ProsesHapusGaji"})
-public class ProsesHapusGaji extends HttpServlet {
+@WebServlet(name = "ProsesHapusHunian", urlPatterns = {"/ProsesHapusHunian"})
+public class ProsesHapusHunian extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -48,11 +48,11 @@ public class ProsesHapusGaji extends HttpServlet {
         
             request.setAttribute("pengguna", pengguna2);
         
-            DaftarGaji daftar = new DaftarGaji();
-            Long idGaj = Long.parseLong(request.getParameter("idGaj"));
-            Gaji gaji = daftar.getGaji(session);
+            DaftarHunian daftar = new DaftarHunian();
+            Long idHun = Long.parseLong(request.getParameter("idHun"));
+            Hunian hunian = daftar.getHunian(idHun);
         
-            daftar.deleteGaji(session);
+            daftar.deleteHunian(idHun);
             request.setAttribute("sukses","Hapus data berhasil");
             response.sendRedirect("listkeluarga");
                 
